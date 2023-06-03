@@ -1,0 +1,17 @@
+{
+  // 導入推奨プラグイン一覧
+  "recommendations": [
+    // esLintの保存時自動フォーマットを有効
+    "dbaeumer.vscode-eslint",
+    // styleLintの保存時自動フォーマットを有効
+    "stylelint.vscode-stylelint",
+    // prettierの保存時自動フォーマットを有効
+    "esbenp.prettier-vscode",
+    // cssModulesのクラス名補完を有効
+    "clinyong.vscode-css-modules",
+    // css変数の補完を有効
+    "vunguyentuan.vscode-css-variables",
+    // cssクラス名の補完を有効
+    "gencer.html-slim-scss-css-class-completion"
+  ]
+}
