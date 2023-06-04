@@ -10,6 +10,7 @@ $layout-gap: 20px;
     display: flex;
     column-gap: $layout-gap;
     justify-content: center;
+    min-height: 100vh;
     margin-inline: auto;
   }
 
