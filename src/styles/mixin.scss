@@ -1,0 +1,25 @@
+$breakpoints: 844px; // iphone14の縦幅
+
+@mixin sp {
+  @media screen and (max-width: #{$breakpoints}) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: #{$breakpoints + 1}) {
+    @content;
+  }
+}
+
+@mixin hover-active {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  &:active {
+    @content;
+  }
+}

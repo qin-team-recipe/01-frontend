@@ -1,0 +1,20 @@
+{
+  "include-pc": {
+    "scope": "scss",
+    "prefix": "@include-pc",
+    "body": ["@include pc {", "  $1", "}"],
+    "description": "@include pc {}"
+  },
+  "include-sp": {
+    "scope": "scss",
+    "prefix": "@include-sp",
+    "body": ["@include sp {", "  $1", "}"],
+    "description": "@include sp {}"
+  },
+  "include-hover-active": {
+    "scope": "scss",
+    "prefix": "@include-hover-active",
+    "body": ["@include hover-active {", "  $1", "}"],
+    "description": "@include hover-active {}"
+  }
+}
