@@ -1,6 +1,6 @@
-"use client";
+"use client"; // TODO: usePathnameを利用するために設定しているが、該当箇所以外はServer側で生成されるように調整したい
 
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 
 import { Inter } from "next/font/google";
 import Image from "next/image";
