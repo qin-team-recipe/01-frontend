@@ -1,0 +1,13 @@
+@tailwind base;
+/* TODO: tailwindcssを使う場合は以下コメントアウトを解除する */
+/* @tailwind components; */
+/* @tailwind utilities; */
+
+body {
+  color: #1a1523;
+  background-color: #fff;
+}
+
+.inner {
+  padding-inline: 16px;
+}
