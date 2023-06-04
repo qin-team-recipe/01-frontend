@@ -1,20 +1,34 @@
 @import "@/styles/mixin";
 
-.layout {
-  width: 100%;
+$side-width: 222px;
+$page-width: 480px;
+$layout-gap: 20px;
 
+.layout {
   @include pc {
-    height: 100vh;
+    position: relative;
+    display: flex;
+    column-gap: $layout-gap;
+    justify-content: center;
+    margin-inline: auto;
+  }
+
+  &:before {
+    display: none;
+
+    @include pc {
+      display: block;
+      width: $side-width;
+      content: "";
+    }
   }
 }
 
-.layout-inner {
+.layout-page {
   @include pc {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    height: 100%;
-    margin-inline: auto;
+    width: $page-width;
+    border-right: 1px solid #e4e2e4;
+    border-left: 1px solid #e4e2e4;
   }
 }
 
@@ -22,28 +36,28 @@
   display: none;
 
   @include pc {
+    position: fixed;
+    top: 0;
+    left: 50%;
     display: flex;
-    flex-direction: column;
-    gap: 40px;
+    column-gap: 20px;
     align-items: flex-start;
-    padding: 20px;
+    width: $page-width + $layout-gap + $side-width;
+    transform: translateX(-50%);
   }
 }
 
-.layout-page {
-  @include pc {
-    width: 100%;
-    max-width: 480px;
-    height: 100%;
-    overflow-y: auto; // TODO: 現在は本コンテンツ内でのみスクロールを有効としているが、PCでも全体スクロールが効くように調整する
-    border-right: 1px solid #e4e2e4;
-    border-left: 1px solid #e4e2e4;
-  }
-}
-
-.site-title {
+.layout-side-main {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  row-gap: 40px;
+  width: $side-width;
+  padding: 20px;
+}
+
+.layout-side-title {
+  display: flex;
+  column-gap: 10px;
   align-items: center;
   font-size: 24px;
   font-weight: 700;

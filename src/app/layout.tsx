@@ -19,18 +19,18 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <div className={styles.layout}>
-          <div className={styles["layout-inner"]}>
-            <div className={styles["layout-side"]}>
+          <div className={styles["layout-side"]}>
+            <div className={styles["layout-side-main"]}>
               <h1>
-                <Link href="/" className={styles["site-title"]}>
+                <Link href="/" className={styles["layout-side-title"]}>
                   <Image src="/icon/chef.svg" width={32} height={32} alt="" />
                   Top Chefs
                 </Link>
               </h1>
               <Footer />
             </div>
-            <div className={styles["layout-page"]}>{children}</div>
           </div>
+          <div className={styles["layout-page"]}>{children}</div>
         </div>
       </body>
     </html>
