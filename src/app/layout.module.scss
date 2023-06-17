@@ -35,16 +35,26 @@ $layout-gap: 20px;
 }
 
 .layout-side {
-  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  background-color: #fff;
+  filter: drop-shadow(0px -2px 4px rgba(0, 0, 0, 0.12));
 
   @include pc {
-    position: fixed;
     top: 0;
+    bottom: auto;
     left: 50%;
+    z-index: 0;
     display: flex;
     column-gap: 20px;
     align-items: flex-start;
+    width: auto;
     width: $page-width + $layout-gap + $side-width;
+    background-color: transparent;
+    filter: none;
     transform: translateX(-50%);
   }
 }
@@ -52,12 +62,24 @@ $layout-gap: 20px;
 .layout-side-main {
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
-  width: $side-width;
-  padding: 20px;
+  width: 100%;
+
+  @include pc {
+    row-gap: 40px;
+    width: $side-width;
+    padding: 20px;
+  }
 }
 
 .layout-side-title {
+  display: none;
+
+  @include pc {
+    display: block;
+  }
+}
+
+.layout-side-title-link {
   display: flex;
   column-gap: 10px;
   align-items: center;

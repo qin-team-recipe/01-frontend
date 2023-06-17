@@ -21,8 +21,8 @@ export default function RootLayout({
         <div className={styles.layout}>
           <div className={styles["layout-side"]}>
             <div className={styles["layout-side-main"]}>
-              <h1>
-                <Link href="/" className={styles["layout-side-title"]}>
+              <h1 className={styles["layout-side-title"]}>
+                <Link href="/" className={styles["layout-side-title-link"]}>
                   <Image src="/icon/chef.svg" width={32} height={32} alt="" />
                   Top Chefs
                 </Link>

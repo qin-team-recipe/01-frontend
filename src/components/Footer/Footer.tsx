@@ -1,9 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { IconSearch } from "../IconSearch";
+import IconCart from "../IconSearch/IconCart";
+import IconHeart from "../IconSearch/IconHeart";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
@@ -11,26 +13,22 @@ export const Footer = () => {
 
   return (
     <ul className={styles["site-list"]}>
-      <li>
+      <li className={styles["site-list-item"]}>
         <Link
           href="/"
           className={
             pagePath === "/" ? styles["site-link-active"] : styles["site-link"]
           }
         >
-          <Image
-            src={
-              // TODO: SVGをReactコンポーネントとして利用してpropsで色変更できるようにしたい
-              pagePath === "/" ? "/icon/search-active.svg" : "/icon/search.svg"
-            }
-            width={26}
-            height={26}
-            alt=""
-          />
-          話題を検索
+          <span className={styles["site-link-icon"]}>
+            <IconSearch color={pagePath === "/" ? "#CA3214" : "#6F6E77"} />
+          </span>
+          <span className={styles["site-link-text"]}>
+            <span className={styles["pc-only-text"]}>話題を</span>検索
+          </span>
         </Link>
       </li>
-      <li>
+      <li className={styles["site-list-item"]}>
         <Link
           href="/favorites"
           className={
@@ -39,20 +37,15 @@ export const Footer = () => {
               : styles["site-link"]
           }
         >
-          <Image
-            src={
-              pagePath === "/favorites"
-                ? "/icon/heart-active.svg"
-                : "/icon/heart.svg"
-            }
-            width={26}
-            height={26}
-            alt=""
-          />
-          お気に入り
+          <span className={styles["site-link-icon"]}>
+            <IconHeart
+              color={pagePath === "/favorites" ? "#CA3214" : "#6F6E77"}
+            />
+          </span>
+          <span className={styles["site-link-text"]}>お気に入り</span>
         </Link>
       </li>
-      <li>
+      <li className={styles["site-list-item"]}>
         <Link
           href="/shopping-lists"
           className={
@@ -61,17 +54,15 @@ export const Footer = () => {
               : styles["site-link"]
           }
         >
-          <Image
-            src={
-              pagePath === "/shopping-lists"
-                ? "/icon/cart-active.svg"
-                : "/icon/cart.svg"
-            }
-            width={26}
-            height={26}
-            alt=""
-          />
-          買い物リスト
+          <span className={styles["site-link-icon"]}>
+            <IconCart
+              color={pagePath === "/shopping-lists" ? "#CA3214" : "#6F6E77"}
+            />
+          </span>
+          <span className={styles["site-link-text"]}>
+            <span className={styles["sp-only-text"]}>お</span>買い物
+            <span className={styles["pc-only-text"]}>リスト</span>
+          </span>
         </Link>
       </li>
     </ul>
