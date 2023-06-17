@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { IconSearch } from "../IconSearch";
-import IconCart from "../IconSearch/IconCart";
-import IconHeart from "../IconSearch/IconHeart";
+import { IconCart, IconHeart, IconSearch } from "../Icon";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
