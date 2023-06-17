@@ -10,4 +10,5 @@ body {
 
 .inner {
   padding-inline: 16px;
+  position: relative;
 }

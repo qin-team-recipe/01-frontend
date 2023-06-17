@@ -1,5 +1,11 @@
 @import "@/styles/mixin";
 
+.imgWrapper {
+  position: relative;
+  width: 173px;
+  height: 173px;
+}
+
 .img {
   display: flex;
   flex-direction: column;
@@ -16,6 +22,30 @@
   flex-grow: 0;
   z-index: 0;
 }
+
+.favCount {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;  /* 右揃えに変更 */
+  align-items: center;
+  padding: 6px;
+  gap: 4px;
+  position: absolute;
+  padding: 6px 12px;
+  right: 7px;
+  top: 8px;
+  background: rgba(4, 0, 19, 0.483);
+  border-radius: 16px;
+  z-index: 2;
+}
+
+.favNumber {
+  font-family: 'Inter', sans-serif;  /* フォントフォールバックを追加 */
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+}
+
 
 .recipe-name {
   font-family: 'Inter';
