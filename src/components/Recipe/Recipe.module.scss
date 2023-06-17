@@ -26,7 +26,7 @@
 .favCount {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;  /* 右揃えに変更 */
+  justify-content: flex-end;
   align-items: center;
   padding: 6px;
   gap: 4px;
@@ -40,7 +40,7 @@
 }
 
 .favNumber {
-  font-family: 'Inter', sans-serif;  /* フォントフォールバックを追加 */
+  font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 17px;
   color: #FFFFFF;
@@ -72,7 +72,6 @@
   /* Mauve/Light/11 */
 
   color: #6F6E77;
-
 
   /* Inside auto layout */
 
