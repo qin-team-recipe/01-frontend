@@ -4,9 +4,9 @@ export const IconCart = ({ color }: { color: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    stroke-width="1.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="1.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   >
     <path d="M8.33332 22C8.88561 22 9.33332 21.5523 9.33332 21C9.33332 20.4477 8.88561 20 8.33332 20C7.78104 20 7.33332 20.4477 7.33332 21C7.33332 21.5523 7.78104 22 8.33332 22Z" />
     <path d="M19.3333 22C19.8856 22 20.3333 21.5523 20.3333 21C20.3333 20.4477 19.8856 20 19.3333 20C18.781 20 18.3333 20.4477 18.3333 21C18.3333 21.5523 18.781 22 19.3333 22Z" />
