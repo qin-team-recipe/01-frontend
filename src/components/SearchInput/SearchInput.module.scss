@@ -9,15 +9,18 @@
   padding: 8px 12px;
   gap: 8px;
   height: 40px;
-  background: #eeedef;
+  background-color: #eeedef;
   border-radius: 8px;
   flex-grow: 1;
-
   input {
     background-color: #eeedef;
     font-weight: bold;
     outline: none;
     flex: 1;
+  }
+  :focus {
+    border: 2px solid #dadada !important;
+    border-radius: 8px;
   }
 }
 
