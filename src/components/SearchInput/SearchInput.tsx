@@ -47,11 +47,14 @@ export const SearchInput = ({ mode, queryWord, handleKeyword }: Props) => {
         />
       ) : null}
       <div className={styles.search}>
-        <IconSearch width={20} height={20} color="#6f6e77" />
+        <div className={styles["icon-search"]}>
+          <IconSearch width={20} height={20} color="#6f6e77" />
+        </div>
         <input
           type="text"
           name="searchWord"
           value={searchWord}
+          className={styles["search-input"]}
           placeholder="シェフやレシピを検索"
           autoComplete="off"
           onChange={(e) => {
