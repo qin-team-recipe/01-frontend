@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import styles from "./Recipe.module.scss";
+import styles from "./RecipeCard.module.scss";
 
-export const Recipe = () => {
+export const RecipeCard = () => {
   const fav_count_number = 1234;
   return (
     <div className="inner">
@@ -33,4 +33,4 @@ export const Recipe = () => {
   );
 };
 
-export default Recipe;
+export default RecipeCard;
