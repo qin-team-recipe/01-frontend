@@ -1,0 +1,30 @@
+.box-search {
+  display: flex;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  height: 40px;
+  background: #eeedef;
+  border-radius: 8px;
+  flex-grow: 1;
+
+  input {
+    background-color: #eeedef;
+    font-weight: bold;
+    outline: none;
+    flex: 1;
+  }
+}
+
+.image {
+  cursor: pointer;
+}
+
+.arrow {
+  margin-right: 8px;
+}

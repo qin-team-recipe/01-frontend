@@ -1,4 +1,8 @@
+"use client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import { SearchInput } from "@/components/SearchInput";
 
 import styles from "./top.module.scss";
 
@@ -7,8 +11,18 @@ export const metadata = {
 };
 
 export default function Home() {
+  const router = useRouter();
+  const handleKeyword = (keyword: string) => {
+    if (keyword) {
+      router.push(`/search/recipe?q=${keyword}`);
+    }
+  };
+
   return (
     <main>
+      <div className={styles["search-input"]}>
+        <SearchInput mode="top" handleKeyword={handleKeyword} />
+      </div>
       <Image
         src="/images/chef-dummy.png"
         alt=""
