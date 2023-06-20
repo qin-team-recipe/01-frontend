@@ -8,7 +8,7 @@ export const RecipeCard = () => {
     <div className="inner">
       <div className={styles.imgWrapper}>
         <div className={styles.favCount}>
-          <Image src="/icon/heart.svg" width={11.67} height={10.5} alt="" />
+          <Image src="/icon/heart.svg" width={10} height={9} alt="" />
           <span className={styles.favNumber}>
             {fav_count_number.toLocaleString()}
           </span>
