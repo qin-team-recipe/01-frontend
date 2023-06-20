@@ -2,15 +2,24 @@ import Image from "next/image";
 
 import styles from "./RecipeCard.module.scss";
 
-export const RecipeCard = () => {
-  const fav_count_number = 1234;
+interface RecipeCardProps {
+  favCountNumber: number;
+  name: string;
+  description: string;
+}
+
+export const RecipeCard: React.FC<RecipeCardProps> = ({
+  favCountNumber,
+  name,
+  description,
+}) => {
   return (
     <div className="inner">
       <div className={styles.imgWrapper}>
         <div className={styles.favCount}>
           <Image src="/icon/heart.svg" width={10} height={9} alt="" />
           <span className={styles.favNumber}>
-            {fav_count_number.toLocaleString()}
+            {favCountNumber.toLocaleString()}
           </span>
         </div>
 
@@ -23,12 +32,8 @@ export const RecipeCard = () => {
         />
       </div>
 
-      <h1 className={styles["recipe-name"]}>
-        トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン
-      </h1>
-      <p className={styles["recipe-description"]}>
-        ウルトラハイパー超すごいしまぶーシェフ
-      </p>
+      <h1 className={styles["recipe-name"]}>{name}</h1>
+      <p className={styles["recipe-description"]}>{description}</p>
     </div>
   );
 };
