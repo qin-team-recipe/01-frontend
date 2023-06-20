@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import styles from "./RecipeCard.module.scss";
 
-interface RecipeCardProps {
+export interface RecipeCardProps {
   favCountNumber: number;
   name: string;
   description: string;
