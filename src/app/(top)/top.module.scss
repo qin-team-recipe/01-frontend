@@ -1,0 +1,47 @@
+@import "@/styles/mixin";
+
+.wrap {
+  padding: 20px 0;
+}
+
+.section {
+  padding-left: 16px;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.featured-chef {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+}
+
+.chef-item {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.chef-image {
+  position: relative;
+  img {
+    border-radius: 16px;
+  }
+}
+
+.chef-name {
+  position: absolute;
+  top: 180px;
+  left: 8px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fdfcfd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
