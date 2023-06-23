@@ -1,0 +1,78 @@
+@import "@/styles/mixin";
+
+.imgWrapper {
+  position: relative;
+  width: 173px;
+  height: 173px;
+}
+
+.img {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  border-radius: 16px;
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+  z-index: 0;
+}
+
+.favCount {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 6px;
+  gap: 4px;
+  position: absolute;
+  padding: 6px 12px;
+  right: 7px;
+  top: 8px;
+  background: rgba(4, 0, 19, 0.483);
+  border-radius: 16px;
+  z-index: 2;
+}
+
+.favNumber {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+}
+
+.recipe-name {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 18px;
+  width: 173px;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.recipe-description {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #6f6e77;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  width: 173px;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}

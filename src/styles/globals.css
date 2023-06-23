@@ -9,5 +9,6 @@ body {
 }
 
 .inner {
+  position: relative;
   padding-inline: 16px;
 }
