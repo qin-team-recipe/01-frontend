@@ -18,7 +18,7 @@ export const ChefCard: React.FC<ChefCardProps> = ({
   return (
     <div className={styles["chef-card"]}>
       <div className={styles["card-left"]}>
-        <Image src={src} width={88} height={116} alt="" />
+        <Image src={src} width={88} height={130} alt="" />
       </div>
       <div className={styles["card-right"]}>
         <div className={styles["chef-name"]}>{name}</div>
