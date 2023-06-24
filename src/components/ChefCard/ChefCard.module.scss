@@ -1,0 +1,22 @@
+@import "@/styles/mixin";
+
+.chef-image {
+  position: relative;
+  img {
+    border-radius: 16px;
+    object-fit: contain;
+  }
+}
+
+.chef-name {
+  position: relative;
+  top: -34px;
+  left: 12px;
+  width: 130px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fdfcfd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
