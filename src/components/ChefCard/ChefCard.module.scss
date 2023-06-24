@@ -1,0 +1,48 @@
+@import "@/styles/mixin";
+
+.chef-card {
+  display: flex;
+  gap: 16px;
+  height: 130px;
+}
+
+.card-left {
+  flex-shrink: 0;
+  width: 88px;
+  height: 130px;
+  img {
+    border-radius: 16px;
+  }
+}
+
+.card-right {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.chef-name {
+  height: 22px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  color: #1a1523;
+}
+
+.chef-description {
+  font-size: 14px;
+  height: 80px;
+  line-height: 20px;
+  color: #86848d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.recipe-count {
+  height: 25px;
+  display: flex;
+  gap: 6px;
+}
