@@ -24,24 +24,6 @@
 .chef-item {
   flex-shrink: 0;
   position: relative;
-}
-
-.chef-image {
-  position: relative;
-  img {
-    border-radius: 16px;
-  }
-}
-
-.chef-name {
-  position: absolute;
-  top: 180px;
-  left: 8px;
-  width: 100%;
-  font-size: 20px;
-  font-weight: bold;
-  color: #fdfcfd;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 232px;
+  cursor: pointer;
 }
