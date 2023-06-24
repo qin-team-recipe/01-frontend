@@ -45,17 +45,15 @@ export const Footer = () => {
       </li>
       <li className={styles["site-list-item"]}>
         <Link
-          href="/shopping-lists"
+          href="/list"
           className={
-            pagePath === "/shopping-lists"
+            pagePath === "/list"
               ? styles["site-link-active"]
               : styles["site-link"]
           }
         >
           <span className={styles["site-link-icon"]}>
-            <IconCart
-              color={pagePath === "/shopping-lists" ? "#CA3214" : "#6F6E77"}
-            />
+            <IconCart color={pagePath === "/list" ? "#CA3214" : "#6F6E77"} />
           </span>
           <span className={styles["site-link-text"]}>
             <span className={styles["sp-only-text"]}>お</span>買い物

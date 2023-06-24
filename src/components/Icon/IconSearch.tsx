@@ -12,5 +12,3 @@ export const IconSearch = ({ color }: { color: string }) => (
     <path d="M21.6667 21L17.3167 16.65" />
   </svg>
 );
-
-export default IconSearch;

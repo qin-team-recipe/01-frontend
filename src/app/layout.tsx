@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/utility.scss";
 
 import { Inter } from "next/font/google";
 import Image from "next/image";
