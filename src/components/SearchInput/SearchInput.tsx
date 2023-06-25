@@ -7,9 +7,12 @@ import { ChangeEvent, useState } from "react";
 import { IconSearch } from "../Icon";
 import styles from "./SearchInput.module.scss";
 
-export const SearchInput = () => {
+export interface SearchInputProps {
+  path: string;
+}
+
+export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
   const router = useRouter();
-  const [mode, setMode] = useState<"top" | "search">("top");
   const [searchWord, setSearchWord] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -24,7 +27,7 @@ export const SearchInput = () => {
 
   return (
     <div className={styles.wrap}>
-      {mode === "search" ? (
+      {path.startsWith("/search/") ? (
         <div className={styles["icon-left-arrow"]}>
           <Image
             className={styles.pointer}

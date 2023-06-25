@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import React from "react";
 
 import { SearchInput } from "@/components/SearchInput";
@@ -9,10 +12,12 @@ export default function SearchLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = usePathname();
+
   return (
     <main>
       <div className={styles["search-section"]}>
-        <SearchInput />
+        <SearchInput path={pathname} />
       </div>
       <div>{children}</div>
     </main>
