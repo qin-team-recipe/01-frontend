@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 import { IconSearch } from "../Icon";
 import styles from "./SearchInput.module.scss";
@@ -12,6 +12,15 @@ export const SearchInput = () => {
   const [mode, setMode] = useState<"top" | "search">("top");
   const [searchWord, setSearchWord] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.value) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+    setSearchWord(e.target.value);
+  };
 
   return (
     <div className={styles.wrap}>
@@ -41,8 +50,7 @@ export const SearchInput = () => {
           placeholder="シェフやレシピを検索"
           autoComplete="off"
           onChange={(e) => {
-            setLoading(true);
-            setSearchWord(e.target.value);
+            handleSearchWord(e);
           }}
         />
         <div className={styles["icon-close"]}>
