@@ -25,7 +25,7 @@ export const ChefCard: React.FC<ChefCardProps> = ({
         <div className={styles["chef-description"]}>{description}</div>
         <div className={styles["recipe-count"]}>
           <Image src={"/icon/knife-fork.svg"} width={16} height={16} alt="" />
-          <p>{count}レシピ</p>
+          <p>{count.toLocaleString()}レシピ</p>
         </div>
       </div>
     </div>
