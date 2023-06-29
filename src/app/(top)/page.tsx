@@ -75,10 +75,12 @@ export default function Page() {
         <h2 className={styles.title}>注目のシェフ</h2>
         <div className={styles["featured-chef"]}>
           {chefList.map((chef) => (
-            <div className={styles["chef-image"]} key={chef.id}>
-              <Image src={chef.thumbnail} width={130} height={193} alt="" />
-              <p className={styles["chef-name"]}>{chef.name}</p>
-            </div>
+            <Link href="" key={chef.id}>
+              <div className={styles["chef-image"]}>
+                <Image src={chef.thumbnail} width={130} height={193} alt="" />
+                <p className={styles["chef-name"]}>{chef.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -91,12 +93,13 @@ export default function Page() {
         </div>
         <div className={styles["topic-recipe"]}>
           {recipeList.map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              favCountNumber={recipe.favCountNumber}
-              name={recipe.name}
-              description={recipe.description}
-            />
+            <Link href="" key={recipe.id}>
+              <RecipeCard
+                favCountNumber={recipe.favCountNumber}
+                name={recipe.name}
+                description={recipe.description}
+              />
+            </Link>
           ))}
         </div>
       </section>
@@ -109,13 +112,14 @@ export default function Page() {
         </div>
         <div className={styles["chef-list"]}>
           {chefList.map((chef) => (
-            <ChefCard
-              key={chef.id}
-              src={chef.thumbnail}
-              name={chef.name}
-              description={chef.description}
-              count={chef.recipe_count}
-            />
+            <Link href="" key={chef.id}>
+              <ChefCard
+                src={chef.thumbnail}
+                name={chef.name}
+                description={chef.description}
+                count={chef.recipe_count}
+              />
+            </Link>
           ))}
         </div>
       </section>
