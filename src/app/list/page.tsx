@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { IconDots, IconPlus } from "@/components/Icon";
 import { ListTitle } from "@/components/ListTitle";
 
@@ -23,12 +25,24 @@ export default function Home() {
           </button>
         </div>
         <ul>
-          <li className={styles["list-item"]}>チーズ</li>
+          <li className={styles["list-item"]}>
+            <input
+              type="checkbox"
+              id="mymemo01"
+              className={styles["checkbox-input"]}
+            />
+            <label htmlFor="mymemo01" className={styles["checkbox-label"]}>
+              <span className={styles["checkbox-icon"]}></span>
+              <span>チーズ</span>
+            </label>
+          </li>
           <li className={styles["list-item"]}>マカロニ</li>
           <li className={styles["list-item"]}>バジル</li>
         </ul>
         <div className={styles.parent}>
-          <h2>グラタン</h2>
+          <h2>
+            <Link href="">グラタン</Link>
+          </h2>
           <button
             type="button"
             title="ポップアップを開く"

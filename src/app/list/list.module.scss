@@ -31,3 +31,38 @@
   background-color: #fff;
   border-bottom: solid 1px #e4e2e4;
 }
+
+.checkbox-input {
+  display: none; // TODO: 余裕があればfocusさせるように修正する
+}
+
+.checkbox-label {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.checkbox-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border: solid 1.5px #e54d2e;
+  border-radius: 50%;
+
+  .checkbox-input:checked + .checkbox-label & {
+    background-color: #c8c7cb;
+    border-color: #c8c7cb;
+  }
+
+  &:before {
+    width: 5px;
+    height: 8px;
+    content: "";
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: translateY(-1px) rotate(45deg);
+  }
+}
