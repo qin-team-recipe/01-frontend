@@ -37,8 +37,11 @@
 
 .chef-image {
   flex-shrink: 0;
+  position: relative;
   img {
     border-radius: 16px;
+    object-fit: contain;
+    position: relative !important;
   }
 }
 
@@ -51,6 +54,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
 }
 
 .topic-recipe {

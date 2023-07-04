@@ -77,7 +77,7 @@ export default function Page() {
           {chefList.map((chef) => (
             <Link href="" key={chef.id}>
               <div className={styles["chef-image"]}>
-                <Image src={chef.thumbnail} width={130} height={193} alt="" />
+                <Image src={chef.thumbnail} fill sizes="100%" alt="" />
                 <p className={styles["chef-name"]}>{chef.name}</p>
               </div>
             </Link>
