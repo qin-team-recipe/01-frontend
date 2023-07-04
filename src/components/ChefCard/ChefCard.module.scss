@@ -8,10 +8,12 @@
 
 .card-left {
   flex-shrink: 0;
+  position: relative;
   width: 88px;
-  height: 130px;
   img {
     border-radius: 16px;
+    object-fit: contain;
+    position: relative !important;
   }
 }
 
