@@ -1,0 +1,71 @@
+@import "@/styles/mixin";
+
+.wrap {
+  padding: 20px 0;
+}
+
+.section {
+  padding-left: 16px;
+  margin-bottom: 32px;
+}
+
+.title-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 16px;
+}
+
+.more {
+  font-weight: bold;
+  font-size: 16px;
+  color: #908e96;
+  margin-top: 4px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.featured-chef {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 18px;
+}
+
+.chef-image {
+  flex-shrink: 0;
+  position: relative;
+  img {
+    border-radius: 16px;
+    object-fit: contain;
+    position: relative !important;
+  }
+}
+
+.chef-name {
+  margin: -34px 0 0 12px;
+  width: 110px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fdfcfd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.topic-recipe {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 18px;
+}
+
+.chef-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

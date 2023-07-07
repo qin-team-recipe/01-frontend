@@ -14,7 +14,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   description,
 }) => {
   return (
-    <div className="inner">
+    <div>
       <div className={styles.imgWrapper}>
         <div className={styles.favCount}>
           <Image src="/icon/heart.svg" width={10} height={9} alt="" />
@@ -27,7 +27,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           src="/images/recipe-dummy.png"
           alt=""
           width={173}
-          height={173}
+          height={174}
           className={styles.img}
         />
       </div>
