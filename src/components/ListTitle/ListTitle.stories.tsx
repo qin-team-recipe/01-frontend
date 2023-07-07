@@ -5,5 +5,7 @@ export default {
 };
 
 export const Default = {
-  args: {},
+  args: {
+    children: "List Title",
+  },
 };

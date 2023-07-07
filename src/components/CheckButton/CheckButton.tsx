@@ -14,7 +14,7 @@ export const CheckButton = ({ label, isOwnNotes }: rops) => {
   const [checked, setChecked] = useState<boolean>(false);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <div className={styles.checkbox}>
         <input
           type="checkbox"
@@ -33,6 +33,6 @@ export const CheckButton = ({ label, isOwnNotes }: rops) => {
           削除
         </button>
       )}
-    </>
+    </div>
   );
 };
