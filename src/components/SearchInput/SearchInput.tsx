@@ -18,19 +18,20 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
 
   useEffect(() => {
     const delaySearch = setTimeout(() => {
-      console.log("Perform search:", searchWord);
       setLoading(false);
+      if (searchWord) {
+        router.push(`search/recipe?q=${searchWord}`);
+      }
     }, 1200);
 
     return () => {
       clearTimeout(delaySearch);
     };
-  }, [searchWord]);
+  }, [searchWord, router]);
 
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
-    const word = e.target.value;
     setLoading(true);
-    setSearchWord(word);
+    setSearchWord(e.target.value);
   };
 
   return (
