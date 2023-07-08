@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { IconSearch } from "../Icon";
 import styles from "./SearchInput.module.scss";
@@ -16,13 +16,21 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
   const [searchWord, setSearchWord] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      setLoading(true);
-    } else {
+  useEffect(() => {
+    const delaySearch = setTimeout(() => {
+      console.log("Perform search:", searchWord);
       setLoading(false);
-    }
-    setSearchWord(e.target.value);
+    }, 1200);
+
+    return () => {
+      clearTimeout(delaySearch);
+    };
+  }, [searchWord]);
+
+  const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
+    const word = e.target.value;
+    setLoading(true);
+    setSearchWord(word);
   };
 
   return (
