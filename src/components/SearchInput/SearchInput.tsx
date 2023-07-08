@@ -26,6 +26,9 @@ export const SearchInput: React.FC = () => {
       setLoading(false);
       if (searchWord) {
         router.push(`search/recipe?q=${searchWord}`);
+      } else {
+        router.replace("search/recipe");
+        setSearchWord("");
       }
     }, 1200);
 
