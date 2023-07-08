@@ -12,6 +12,7 @@ export const SearchInput: React.FC = () => {
   const path = usePathname();
   const params = useSearchParams();
   const queryWord = params.get("q");
+  const isSearchPage = path.startsWith("/search/");
 
   const [searchWord, setSearchWord] = useState(queryWord ?? "");
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,9 @@ export const SearchInput: React.FC = () => {
       if (searchWord) {
         router.push(`search/recipe?q=${searchWord}`);
       } else {
-        router.replace("search/recipe");
+        if (isSearchPage) {
+          router.replace("search/recipe");
+        }
         setSearchWord("");
       }
     }, 1200);
@@ -35,7 +38,7 @@ export const SearchInput: React.FC = () => {
     return () => {
       clearTimeout(delaySearch);
     };
-  }, [queryWord, searchWord, router]);
+  }, [queryWord, searchWord, router, isSearchPage]);
 
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
@@ -44,7 +47,7 @@ export const SearchInput: React.FC = () => {
 
   return (
     <div className={styles.wrap}>
-      {path.startsWith("/search/") ? (
+      {isSearchPage ? (
         <div className={styles["icon-left-arrow"]}>
           <Image
             className={styles.pointer}
@@ -54,6 +57,7 @@ export const SearchInput: React.FC = () => {
             alt=""
             onClick={() => {
               router.push("/");
+              setSearchWord("");
             }}
           />
         </div>
