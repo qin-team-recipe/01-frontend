@@ -1,23 +1,27 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import { IconSearch } from "../Icon";
 import styles from "./SearchInput.module.scss";
 
-export interface SearchInputProps {
-  path: string;
-}
-
-export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
+export const SearchInput: React.FC = () => {
   const router = useRouter();
-  const [searchWord, setSearchWord] = useState("");
+  const path = usePathname();
+  const params = useSearchParams();
+  const queryWord = params.get("q");
+
+  const [searchWord, setSearchWord] = useState(queryWord ?? "");
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
+    if (queryWord === searchWord) {
+      return;
+    }
+
     const delaySearch = setTimeout(() => {
       setLoading(false);
       if (searchWord) {
@@ -28,7 +32,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
     return () => {
       clearTimeout(delaySearch);
     };
-  }, [searchWord, router]);
+  }, [queryWord, searchWord, router]);
 
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
@@ -78,6 +82,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
               height={20}
               alt=""
               onClick={() => {
+                router.replace("search/recipe");
                 setSearchWord("");
                 inputRef.current?.focus();
               }}
