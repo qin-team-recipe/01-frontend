@@ -11,7 +11,7 @@ const dummyData = [
 export default function Page({ params }: { params: { target: string } }) {
   return (
     <main className={styles.page}>
-      <div>search/page/{params.target}</div>
+      <div>chef/{params.target}</div>
       <TabBar data={dummyData} />
     </main>
   );
