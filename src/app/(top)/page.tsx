@@ -75,7 +75,7 @@ export default function Page() {
         <h2 className={styles.title}>注目のシェフ</h2>
         <div className={styles["featured-chef"]}>
           {chefList.map((chef) => (
-            <Link href="" key={chef.id}>
+            <Link href={`/chef/${chef.id}`} key={chef.id}>
               <div className={styles["chef-image"]}>
                 <Image src={chef.thumbnail} fill sizes="100%" alt="" />
                 <p className={styles["chef-name"]}>{chef.name}</p>
@@ -112,7 +112,7 @@ export default function Page() {
         </div>
         <div className={styles["chef-list"]}>
           {chefList.map((chef) => (
-            <Link href="" key={chef.id}>
+            <Link href={`/chef/${chef.id}`} key={chef.id}>
               <ChefCard
                 src={chef.thumbnail}
                 name={chef.name}
