@@ -1,0 +1,21 @@
+@import "@/styles/mixin";
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #e4e2e4;
+
+button {
+    flex-grow: 1;
+    padding: 8px 0;
+    margin-bottom: 1px;
+    font-size: 14px;
+
+    &.active {
+      font-weight: bold;
+      margin-bottom: -1px;
+      border-bottom: 2px solid;
+    }
+  }
+}
