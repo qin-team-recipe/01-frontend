@@ -4,12 +4,12 @@ import { useId, useState } from "react";
 
 import styles from "./CheckButton.module.scss";
 
-type rops = {
+type Props = {
   label: string;
   isOwnNotes: boolean;
 };
 
-export const CheckButton = ({ label, isOwnNotes }: rops) => {
+export const CheckButton = ({ label, isOwnNotes }: Props) => {
   const id = useId();
   const [checked, setChecked] = useState<boolean>(false);
 
