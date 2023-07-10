@@ -1,33 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import { IconSearch } from "../Icon";
 import styles from "./SearchInput.module.scss";
 
-export interface SearchInputProps {
-  path: string;
-}
-
-export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
+export const SearchInput: React.FC = () => {
   const router = useRouter();
-  const [searchWord, setSearchWord] = useState("");
+  const path = usePathname();
+  const params = useSearchParams();
+  const queryWord = params.get("q");
+  const isSearchPage = path.startsWith("/search/");
+
+  const [searchWord, setSearchWord] = useState(queryWord ?? "");
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (queryWord === searchWord) {
+      return;
+    }
+
+    const delaySearch = setTimeout(() => {
+      setLoading(false);
+      if (searchWord) {
+        router.push(`search/recipe?q=${searchWord}`);
+      } else {
+        if (isSearchPage) {
+          router.replace("search/recipe");
+        }
+        setSearchWord("");
+      }
+    }, 1200);
+
+    return () => {
+      clearTimeout(delaySearch);
+    };
+  }, [queryWord, searchWord, router, isSearchPage]);
 
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value) {
-      setLoading(true);
-    } else {
-      setLoading(false);
-    }
+    setLoading(true);
     setSearchWord(e.target.value);
   };
 
   return (
     <div className={styles.wrap}>
-      {path.startsWith("/search/") ? (
+      {isSearchPage ? (
         <div className={styles["icon-left-arrow"]}>
           <Image
             className={styles.pointer}
@@ -37,6 +57,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
             alt=""
             onClick={() => {
               router.push("/");
+              setSearchWord("");
             }}
           />
         </div>
@@ -55,6 +76,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
           onChange={(e) => {
             handleSearchWord(e);
           }}
+          ref={inputRef}
         />
         <div className={styles["icon-close"]}>
           {loading ? (
@@ -67,7 +89,9 @@ export const SearchInput: React.FC<SearchInputProps> = ({ path }) => {
               height={20}
               alt=""
               onClick={() => {
+                router.replace("search/recipe");
                 setSearchWord("");
+                inputRef.current?.focus();
               }}
             />
           ) : null}
