@@ -12,8 +12,8 @@ export default function Page({ params }: { params: { target: string } }) {
   const isRecipe = path.startsWith("/search/recipe");
   let searchTitle = "";
   if (queryWord) {
-    const decode = decodeURIComponent(queryWord);
-    searchTitle = `「${decode}」で検索`;
+    const decodeQueryWord = decodeURIComponent(queryWord);
+    searchTitle = `「${decodeQueryWord}」で検索`;
   } else {
     searchTitle = isRecipe ? "話題のレシピ" : "シェフ一覧";
   }
