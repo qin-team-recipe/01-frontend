@@ -26,7 +26,10 @@ export const SearchInput: React.FC = () => {
     const delaySearch = setTimeout(() => {
       setLoading(false);
       if (searchWord) {
-        router.push(`search/recipe?q=${searchWord}`);
+        // urlのクエリパラメータの表示もエンコードしたいため、encodeURIComponentを二重にする
+        // エンコードすることによりNext.jsのバグを回避
+        const encode = encodeURIComponent(encodeURIComponent(searchWord));
+        router.push(`search/recipe?q=${encode}`);
       } else {
         if (isSearchPage) {
           router.replace("search/recipe");
@@ -43,6 +46,12 @@ export const SearchInput: React.FC = () => {
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
     setSearchWord(e.target.value);
+  };
+
+  const handleClose = () => {
+    inputRef.current?.focus();
+    router.replace("/search/recipe");
+    setSearchWord("");
   };
 
   return (
@@ -89,9 +98,7 @@ export const SearchInput: React.FC = () => {
               height={20}
               alt=""
               onClick={() => {
-                router.replace("search/recipe");
-                setSearchWord("");
-                inputRef.current?.focus();
+                handleClose();
               }}
             />
           ) : null}
