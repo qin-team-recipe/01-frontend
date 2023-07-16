@@ -9,7 +9,6 @@ export const Default = {
     data: [
       { label: "Tab 1", isActive: false },
       { label: "Tab 2", isActive: true },
-      { label: "Tab 3", isActive: false },
     ],
   },
 };
