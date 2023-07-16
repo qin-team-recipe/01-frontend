@@ -4,8 +4,8 @@ import styles from "./chef.module.scss";
 
 // TODO: APIと連携するまでの仮実装
 const dummyData = [
-  { id: 1, label: "新着レシピ" },
-  { id: 2, label: "人気レシピ" },
+  { label: "新着レシピ", isActive: false },
+  { label: "人気レシピ", isActive: true },
 ];
 
 export default function Page({ params }: { params: { target: string } }) {
