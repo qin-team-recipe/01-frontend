@@ -1,37 +1,86 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useId } from "react";
 
+import { usePopupWithOutsideClick } from "@/hooks/usePopupWithOutsideClick";
+
+import { IconArrow, IconArrowDown, IconDelete, IconDots } from "../Icon";
 import styles from "./CheckButton.module.scss";
 
 type Props = {
   label: string;
-  isOwnNotes: boolean;
+  position: number;
+  isChecked?: boolean;
+  isLastItem: boolean;
 };
 
-export const CheckButton = ({ label, isOwnNotes }: Props) => {
+export const CheckButton = ({
+  label,
+  position,
+  isChecked,
+  isLastItem,
+}: Props) => {
   const id = useId();
-  const [checked, setChecked] = useState<boolean>(false);
+  const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.checkbox}>
+        {/* TODO: チェック状態をもとに処理するロジックは後に実装する */}
         <input
           type="checkbox"
           id={id}
           className={styles["checkbox-input"]}
-          onChange={(e) => setChecked(e.target.checked)}
+          defaultChecked={isChecked}
         />
         <label htmlFor={id} className={styles["checkbox-label"]}>
           <span className={styles["checkbox-icon"]}></span>
           <span>{label}</span>
         </label>
       </div>
-      {isOwnNotes && checked && (
-        // TODO: 削除ロジックは後ほど実装する
-        <button type="button" className={styles["delete-button"]}>
-          削除
-        </button>
+      <button
+        type="button"
+        title="ポップアップメニューを開く"
+        onClick={() => setIsShow((prev) => !prev)}
+      >
+        <IconDots color="#6F6E77" />
+      </button>
+      {isShow && (
+        <div className={styles.popup} ref={popupRef}>
+          {/* TODO: 下記ボタン押下時のロジックは後ほど実装する */}
+          <ul className={styles["popup-list"]}>
+            {position > 1 && (
+              <li>
+                <button type="button" className={styles["popup-button"]}>
+                  <span className={styles["popup-icon"]}>
+                    <IconArrow color="#1A1523" />
+                  </span>
+                  上に移動する
+                </button>
+              </li>
+            )}
+            {!isLastItem && (
+              <li>
+                <button type="button" className={styles["popup-button"]}>
+                  <span className={styles["popup-icon"]}>
+                    <IconArrowDown color="#1A1523" />
+                  </span>
+                  下に移動する
+                </button>
+              </li>
+            )}
+          </ul>
+          <ul className={styles["popup-list"]}>
+            <li>
+              <button type="button" className={styles["popup-button"]}>
+                <span className={styles["popup-icon"]}>
+                  <IconDelete color="#6F6E77" />
+                </span>
+                アイテムを削除する
+              </button>
+            </li>
+          </ul>
+        </div>
       )}
     </div>
   );

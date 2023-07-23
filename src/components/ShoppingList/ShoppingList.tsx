@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
-import { CartsType } from "@/app/list/page";
+import { CartsListType, CartsType } from "@/app/list/page";
 import { CheckButton } from "@/components/CheckButton";
 import {
   IconArrow,
@@ -11,10 +10,10 @@ import {
   IconCheck,
   IconCook,
   IconDelete,
-  IconDots,
   IconOthers,
   IconPlus,
 } from "@/components/Icon";
+import { usePopupWithOutsideClick } from "@/hooks/usePopupWithOutsideClick";
 
 import styles from "./ShoppingList.module.scss";
 
@@ -23,138 +22,23 @@ type Props = {
 };
 
 export const ShoppingList = ({ data }: Props) => {
-  const [isShow, setIsShow] = useState(false);
-  const [isShowOthers, setIsShowOthers] = useState(false);
-
   return (
     <div>
       {data.lists.map((list) => (
         <div key={list.id} className={styles.wrapper}>
-          {list.own_notes && (
-            <div className={styles.parent}>
-              <h2>{list.name}</h2>
-              <div className={styles["button-area"]}>
-                <button
-                  type="button"
-                  title="メモを追加する"
-                  className={styles.button}
-                  // TODO: メモ追加ロジックは後ほど実装する
-                >
-                  <IconPlus color="#6F6E77" />
-                </button>
-                <button
-                  type="button"
-                  title="その他選択"
-                  className={styles["button-others"]}
-                  onClick={() => setIsShowOthers((prev) => !prev)}
-                >
-                  <IconOthers color="#1A1523" />
-                </button>
-                {isShowOthers && (
-                  <div className={styles["popup-others"]}>
-                    <ul className={styles["popup-list"]}>
-                      <li>
-                        <button
-                          type="button"
-                          className={styles["popup-button-delete-item"]}
-                        >
-                          <span className={styles["popup-icon"]}>
-                            <IconCheck color="#6F6E77" />
-                          </span>
-                          完了したアイテムだけ削除する
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          type="button"
-                          className={styles["popup-button-delete-item"]}
-                        >
-                          <span className={styles["popup-icon"]}>
-                            <IconDelete color="#6F6E77" />
-                          </span>
-                          すべてのアイテムを削除する
-                        </button>
-                      </li>
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-          {!list.own_notes && (
-            <>
-              <div className={styles.parent}>
-                <h2>
-                  <button type="button">{list.name}</button>
-                </h2>
-                <button
-                  type="button"
-                  title="ポップアップを開く"
-                  className={styles.button}
-                  onClick={() => setIsShow((prev) => !prev)}
-                >
-                  <IconDots color="#6F6E77" />
-                </button>
-              </div>
-              {isShow && (
-                // TODO: 各ボタン押下後の機能は後ほど実装する
-                <div className={styles.popup}>
-                  <ul className={styles["popup-list"]}>
-                    <li>
-                      <Link href="" className={styles["popup-button"]}>
-                        <span className={styles["popup-icon"]}>
-                          <IconCook color="#1A1523" />
-                        </span>
-                        レシピ詳細を見る
-                      </Link>
-                    </li>
-                    <li>
-                      <button type="button" className={styles["popup-button"]}>
-                        <span className={styles["popup-icon"]}>
-                          <IconArrow color="#1A1523" />
-                        </span>
-                        上に移動する
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" className={styles["popup-button"]}>
-                        <span className={styles["popup-icon"]}>
-                          <IconArrowDown color="#1A1523" />
-                        </span>
-                        下に移動する
-                      </button>
-                    </li>
-                    <li>
-                      <button type="button" className={styles["popup-button"]}>
-                        <span className={styles["popup-icon"]}>
-                          <IconPlus color="#1A1523" strokeWidth={1} />
-                        </span>
-                        買うものを追加する
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        type="button"
-                        className={styles["popup-button-delete"]}
-                      >
-                        <span className={styles["popup-icon"]}>
-                          <IconDelete color="#E54D2E" />
-                        </span>
-                        リストから削除する
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </>
-          )}
+          <ShoppingListTitle
+            list={list}
+            isLastItem={list.position === data.lists.length}
+          />
           {list.materials.length > 0 && (
             <ul>
               {list.materials.map((material) => (
-                <li className={styles["list-item"]} key={material.name}>
+                <li className={styles["list-item"]} key={material.position}>
                   <CheckButton
                     label={material.name}
-                    isOwnNotes={list.own_notes}
+                    position={material.position}
+                    isChecked={material.is_checked}
+                    isLastItem={material.position === list.materials.length}
                   />
                 </li>
               ))}
@@ -162,6 +46,100 @@ export const ShoppingList = ({ data }: Props) => {
           )}
         </div>
       ))}
+    </div>
+  );
+};
+
+type ShoppingListProps = {
+  list: CartsListType;
+  isLastItem: boolean;
+};
+
+const ShoppingListTitle = ({ list, isLastItem }: ShoppingListProps) => {
+  const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
+
+  return (
+    <div className={styles.parent}>
+      <h2 className={styles.title}>
+        {list.own_notes ? (
+          list.name
+        ) : (
+          // TODO: レシピ詳細のリンクを設定する
+          <Link href={`${list.id}`}>{list.name}</Link>
+        )}
+      </h2>
+      <div className={styles["button-area"]}>
+        <button
+          type="button"
+          title="メモを追加する"
+          className={styles.button}
+          // TODO: メモ追加ロジックは後ほど実装する
+        >
+          <IconPlus color="#6F6E77" />
+        </button>
+        <button
+          type="button"
+          title="ポップアップメニューを開く"
+          className={styles["button-others"]}
+          onClick={() => setIsShow((prev) => !prev)}
+        >
+          <IconOthers color="#1A1523" />
+        </button>
+        {isShow && (
+          <div className={styles.popup} ref={popupRef}>
+            {!list.own_notes && (
+              <ul className={styles["popup-list"]}>
+                <li>
+                  <button type="button" className={styles["popup-button"]}>
+                    <span className={styles["popup-icon"]}>
+                      <IconCook color="#6F6E77" />
+                    </span>
+                    レシピ詳細をみる
+                  </button>
+                </li>
+                {list.position > 2 && (
+                  <li>
+                    <button type="button" className={styles["popup-button"]}>
+                      <span className={styles["popup-icon"]}>
+                        <IconArrow color="#6F6E77" />
+                      </span>
+                      上に移動する
+                    </button>
+                  </li>
+                )}
+                {!isLastItem && (
+                  <li>
+                    <button type="button" className={styles["popup-button"]}>
+                      <span className={styles["popup-icon"]}>
+                        <IconArrowDown color="#6F6E77" />
+                      </span>
+                      下に移動する
+                    </button>
+                  </li>
+                )}
+              </ul>
+            )}
+            <ul className={styles["popup-list"]}>
+              <li>
+                <button type="button" className={styles["popup-button"]}>
+                  <span className={styles["popup-icon"]}>
+                    <IconCheck color="#6F6E77" />
+                  </span>
+                  完了したアイテムだけ削除する
+                </button>
+              </li>
+              <li>
+                <button type="button" className={styles["popup-button"]}>
+                  <span className={styles["popup-icon"]}>
+                    <IconDelete color="#6F6E77" />
+                  </span>
+                  すべてのアイテムを削除する
+                </button>
+              </li>
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

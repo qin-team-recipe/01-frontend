@@ -1,6 +1,7 @@
 @import "@/styles/mixin";
 
 .wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -57,5 +58,54 @@
 
   @include hover-active {
     opacity: 0.7;
+  }
+}
+
+// TODO: 以下ShoppingList.module.scssとほぼ同じCSSのため、可能ならまとめて共通化したい
+.popup {
+  position: absolute;
+  right: 16px;
+  bottom: 8px; // この値のみ上記と異なる
+  z-index: 2;
+  min-width: 258px;
+  background-color: #fff;
+  border: 1px solid #e4e2e4;
+  border-radius: 4px;
+  box-shadow: 2px 2px 4px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(100%);
+}
+
+.popup-list {
+  padding: 10px 12px;
+  &:not(:first-child) {
+    border-top: 1px solid #e4e2e4;
+  }
+  li:not(:first-child) {
+    margin-top: 8px;
+  }
+}
+
+.popup-button {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: normal;
+  color: #6f6e77;
+
+  @include hover-active {
+    opacity: 0.7;
+  }
+}
+
+.popup-icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
