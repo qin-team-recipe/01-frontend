@@ -10,7 +10,7 @@ import styles from "./CheckButton.module.scss";
 type Props = {
   name: string;
   position: number;
-  isChecked?: boolean;
+  isChecked: boolean;
   isLastItem: boolean;
 };
 
