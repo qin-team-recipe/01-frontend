@@ -72,16 +72,20 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
         {list.own_notes ? (
           list.name
         ) : (
-          // TODO: レシピ詳細のリンクを設定する
-          <Link href={`${list.id}`}>{list.name}</Link>
+          <Link
+            href={`${list.id}`} //TODO: レシピ詳細のリンクを設定する
+          >
+            {list.name}
+          </Link>
         )}
       </h2>
+      {/* TODO: 各ボタン押下後のロジックを実装する */}
       <div className={styles["button-area"]}>
         <button
           type="button"
-          title="メモを追加する"
+          title="材料を追加する（未実装）"
           className={styles["button-icon"]}
-          // TODO: メモ追加ロジックは後ほど実装する
+          onClick={() => alert("材料を追加する")}
         >
           <IconPlus color="#6F6E77" />
         </button>
@@ -98,16 +102,23 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
             {!list.own_notes && (
               <ul className={styles["popup-list"]}>
                 <li>
-                  <button type="button" className={styles["popup-button"]}>
+                  <Link
+                    href={`${list.id}`} //TODO: レシピ詳細のリンクを設定する
+                    className={styles["popup-button"]}
+                  >
                     <span className={styles["popup-icon"]}>
                       <IconCook color="#6F6E77" />
                     </span>
                     レシピ詳細をみる
-                  </button>
+                  </Link>
                 </li>
                 {list.position > 2 && (
                   <li>
-                    <button type="button" className={styles["popup-button"]}>
+                    <button
+                      type="button"
+                      className={styles["popup-button"]}
+                      onClick={() => alert("上に移動する（未実装）")}
+                    >
                       <span className={styles["popup-icon"]}>
                         <IconArrow color="#6F6E77" />
                       </span>
@@ -117,7 +128,11 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
                 )}
                 {!isLastItem && (
                   <li>
-                    <button type="button" className={styles["popup-button"]}>
+                    <button
+                      type="button"
+                      className={styles["popup-button"]}
+                      onClick={() => alert("下に移動する（未実装）")}
+                    >
                       <span className={styles["popup-icon"]}>
                         <IconArrowDown color="#6F6E77" />
                       </span>
@@ -129,7 +144,13 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
             )}
             <ul className={styles["popup-list"]}>
               <li>
-                <button type="button" className={styles["popup-button"]}>
+                <button
+                  type="button"
+                  className={styles["popup-button"]}
+                  onClick={() =>
+                    alert("完了したアイテムだけ削除する（未実装）")
+                  }
+                >
                   <span className={styles["popup-icon"]}>
                     <IconCheck color="#6F6E77" />
                   </span>
@@ -137,7 +158,11 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
                 </button>
               </li>
               <li>
-                <button type="button" className={styles["popup-button"]}>
+                <button
+                  type="button"
+                  className={styles["popup-button"]}
+                  onClick={() => alert("すべてのアイテムを削除する（未実装）")}
+                >
                   <span className={styles["popup-icon"]}>
                     <IconDelete color="#6F6E77" />
                   </span>
