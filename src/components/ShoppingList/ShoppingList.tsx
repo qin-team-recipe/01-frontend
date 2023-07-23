@@ -25,37 +25,45 @@ export const ShoppingList = ({ data }: Props) => {
   return (
     <div>
       {data.lists.map((list) => (
-        <div key={list.id} className={styles.wrapper}>
-          <ShoppingListTitle
-            list={list}
-            isLastItem={list.position === data.lists.length}
-          />
-          {list.materials.length > 0 && (
-            <ul>
-              {list.materials.map((material) => (
-                <li className={styles["list-item"]} key={material.position}>
-                  <CheckButton
-                    label={material.name}
-                    position={material.position}
-                    isChecked={material.is_checked}
-                    isLastItem={material.position === list.materials.length}
-                  />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+        <List key={list.id} list={list} listLength={data.lists.length} />
       ))}
     </div>
   );
 };
 
-type ShoppingListProps = {
+type ListProps = {
+  list: CartsListType;
+  listLength: number;
+};
+
+const List = ({ list, listLength }: ListProps) => {
+  return (
+    <div key={list.id} className={styles.wrapper}>
+      <ListTitle list={list} isLastItem={list.position === listLength} />
+      {list.materials.length > 0 && (
+        <ul>
+          {list.materials.map((material) => (
+            <li className={styles["list-item"]} key={material.position}>
+              <CheckButton
+                name={material.name}
+                position={material.position}
+                isChecked={material.is_checked}
+                isLastItem={material.position === list.materials.length}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+type ListTitleProps = {
   list: CartsListType;
   isLastItem: boolean;
 };
 
-const ShoppingListTitle = ({ list, isLastItem }: ShoppingListProps) => {
+const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
   const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
 
   return (
