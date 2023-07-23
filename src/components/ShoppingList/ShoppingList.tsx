@@ -80,7 +80,7 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
         <button
           type="button"
           title="メモを追加する"
-          className={styles.button}
+          className={styles["button-icon"]}
           // TODO: メモ追加ロジックは後ほど実装する
         >
           <IconPlus color="#6F6E77" />
@@ -88,7 +88,7 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
         <button
           type="button"
           title="ポップアップメニューを開く"
-          className={styles["button-others"]}
+          className={styles["button-icon"]}
           onClick={() => setIsShow((prev) => !prev)}
         >
           <IconOthers color="#1A1523" />
