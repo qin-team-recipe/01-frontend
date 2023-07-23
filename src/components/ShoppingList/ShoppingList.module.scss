@@ -9,7 +9,7 @@
 }
 
 // ListTitle
-.parent {
+.title {
   position: relative;
   display: flex;
   align-items: center;
@@ -24,19 +24,19 @@
   }
 }
 
-.title {
+.title-text {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.button-area {
+.title-sub {
   display: flex;
   gap: 18px;
   align-items: center;
 }
 
-.button-icon {
+.title-button {
   display: inline-flex;
   width: 20px;
   height: 20px;

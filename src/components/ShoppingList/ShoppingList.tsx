@@ -82,8 +82,8 @@ const ListTitle = ({
   const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
 
   return (
-    <div className={styles.parent}>
-      <h2 className={styles.title}>
+    <div className={styles.title}>
+      <h2 className={styles["title-text"]}>
         {ownNotes ? (
           name
         ) : (
@@ -95,19 +95,19 @@ const ListTitle = ({
         )}
       </h2>
       {/* TODO: 各ボタン押下後のロジックを実装する */}
-      <div className={styles["button-area"]}>
+      <div className={styles["title-sub"]}>
         <button
           type="button"
-          title="材料を追加する（未実装）"
-          className={styles["button-icon"]}
-          onClick={() => alert("材料を追加する")}
+          title="材料を追加する"
+          className={styles["title-button"]}
+          onClick={() => alert("材料を追加する（未実装）")}
         >
           <IconPlus color="#6F6E77" />
         </button>
         <button
           type="button"
           title="ポップアップメニューを開く"
-          className={styles["button-icon"]}
+          className={styles["title-button"]}
           onClick={() => setIsShow((prev) => !prev)}
         >
           <IconOthers color="#1A1523" />
