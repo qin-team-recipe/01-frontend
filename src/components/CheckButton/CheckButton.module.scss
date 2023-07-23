@@ -71,11 +71,11 @@
   }
 }
 
-// TODO: 以下ShoppingList.module.scssとほぼ同じCSSのため、可能ならまとめて共通化したい
+// TODO: 以下ShoppingList.module.scssとほぼ同じCSSのため、ロジック実装後に可能と判断できれば共通化したい
 .popup {
   position: absolute;
   right: 16px;
-  bottom: 8px; // この値のみ上記と異なる
+  bottom: 8px; // この値のみShoppingList.module.scssと異なる
   z-index: 2;
   min-width: 258px;
   background-color: #fff;
