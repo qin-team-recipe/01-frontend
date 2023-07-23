@@ -6,7 +6,9 @@ export default {
 
 export const Default = {
   args: {
-    label: "チーズ",
+    name: "チーズ",
     isOwnNotes: true,
+    isChecked: false,
+    isLastItem: false,
   },
 };
