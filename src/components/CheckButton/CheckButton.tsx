@@ -8,14 +8,14 @@ import { IconArrow, IconArrowDown, IconDelete, IconDots } from "../Icon";
 import styles from "./CheckButton.module.scss";
 
 type Props = {
-  label: string;
+  name: string;
   position: number;
   isChecked?: boolean;
   isLastItem: boolean;
 };
 
 export const CheckButton = ({
-  label,
+  name,
   position,
   isChecked,
   isLastItem,
@@ -35,7 +35,7 @@ export const CheckButton = ({
         />
         <label htmlFor={id} className={styles["checkbox-label"]}>
           <span className={styles["checkbox-icon"]}></span>
-          <span>{label}</span>
+          <span>{name}</span>
         </label>
       </div>
       <button
