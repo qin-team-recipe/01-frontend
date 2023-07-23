@@ -39,7 +39,13 @@ type ListProps = {
 const List = ({ list, listLength }: ListProps) => {
   return (
     <div key={list.id} className={styles.wrapper}>
-      <ListTitle list={list} isLastItem={list.position === listLength} />
+      <ListTitle
+        id={list.id}
+        name={list.name}
+        ownNotes={list.own_notes}
+        position={list.position}
+        isLastItem={list.position === listLength}
+      />
       {list.materials.length > 0 && (
         <ul>
           {list.materials.map((material) => (
@@ -59,23 +65,32 @@ const List = ({ list, listLength }: ListProps) => {
 };
 
 type ListTitleProps = {
-  list: CartsListType;
+  id: number;
+  name: string;
+  ownNotes: boolean;
+  position: number;
   isLastItem: boolean;
 };
 
-const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
+const ListTitle = ({
+  name,
+  id,
+  ownNotes,
+  position,
+  isLastItem,
+}: ListTitleProps) => {
   const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
 
   return (
     <div className={styles.parent}>
       <h2 className={styles.title}>
-        {list.own_notes ? (
-          list.name
+        {ownNotes ? (
+          name
         ) : (
           <Link
-            href={`${list.id}`} //TODO: レシピ詳細のリンクを設定する
+            href={`${id}`} //TODO: レシピ詳細のリンクを設定する
           >
-            {list.name}
+            {name}
           </Link>
         )}
       </h2>
@@ -99,11 +114,11 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
         </button>
         {isShow && (
           <div className={styles.popup} ref={popupRef}>
-            {!list.own_notes && (
+            {!ownNotes && (
               <ul className={styles["popup-list"]}>
                 <li>
                   <Link
-                    href={`${list.id}`} //TODO: レシピ詳細のリンクを設定する
+                    href={`${id}`} //TODO: レシピ詳細のリンクを設定する
                     className={styles["popup-button"]}
                   >
                     <span className={styles["popup-icon"]}>
@@ -112,7 +127,7 @@ const ListTitle = ({ list, isLastItem }: ListTitleProps) => {
                     レシピ詳細をみる
                   </Link>
                 </li>
-                {list.position > 2 && (
+                {position > 2 && (
                   <li>
                     <button
                       type="button"
