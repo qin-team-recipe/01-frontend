@@ -7,8 +7,8 @@ export default {
 export const Default = {
   args: {
     name: "チーズ",
-    isOwnNotes: true,
     isChecked: false,
+    isFirstItem: false,
     isLastItem: false,
   },
 };

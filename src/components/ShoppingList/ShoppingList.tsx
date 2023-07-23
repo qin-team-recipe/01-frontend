@@ -43,7 +43,7 @@ const List = ({ list, listLength }: ListProps) => {
         id={list.id}
         name={list.name}
         ownNotes={list.own_notes}
-        position={list.position}
+        isFirstItem={list.position === 1}
         isLastItem={list.position === listLength}
       />
       {list.materials.length > 0 && (
@@ -52,8 +52,8 @@ const List = ({ list, listLength }: ListProps) => {
             <li className={styles["list-item"]} key={material.position}>
               <CheckButton
                 name={material.name}
-                position={material.position}
                 isChecked={material.is_checked}
+                isFirstItem={material.position === 1}
                 isLastItem={material.position === list.materials.length}
               />
             </li>
@@ -68,7 +68,7 @@ type ListTitleProps = {
   id: number;
   name: string;
   ownNotes: boolean;
-  position: number;
+  isFirstItem: boolean;
   isLastItem: boolean;
 };
 
@@ -76,7 +76,7 @@ const ListTitle = ({
   name,
   id,
   ownNotes,
-  position,
+  isFirstItem,
   isLastItem,
 }: ListTitleProps) => {
   const { popupRef, isShow, setIsShow } = usePopupWithOutsideClick();
@@ -127,7 +127,7 @@ const ListTitle = ({
                     レシピ詳細をみる
                   </Link>
                 </li>
-                {position > 2 && (
+                {!isFirstItem && (
                   <li>
                     <button
                       type="button"

@@ -9,15 +9,15 @@ import styles from "./CheckButton.module.scss";
 
 type Props = {
   name: string;
-  position: number;
   isChecked: boolean;
+  isFirstItem: boolean;
   isLastItem: boolean;
 };
 
 export const CheckButton = ({
   name,
-  position,
   isChecked,
+  isFirstItem,
   isLastItem,
 }: Props) => {
   const id = useId();
@@ -49,7 +49,7 @@ export const CheckButton = ({
         <div className={styles.popup} ref={popupRef}>
           {/* TODO: 各ボタン押下後のロジックを実装する */}
           <ul className={styles["popup-list"]}>
-            {position > 1 && (
+            {!isFirstItem && (
               <li>
                 <button
                   type="button"
