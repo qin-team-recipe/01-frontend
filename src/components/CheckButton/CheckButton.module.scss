@@ -62,15 +62,6 @@
   }
 }
 
-.delete-button {
-  font-size: 14px;
-  color: #e54d2e;
-
-  @include hover-active {
-    opacity: 0.7;
-  }
-}
-
 // TODO: 以下ShoppingList.module.scssとほぼ同じCSSのため、ロジック実装後に可能と判断できれば共通化したい
 .popup {
   position: absolute;
