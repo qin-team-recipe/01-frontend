@@ -8,9 +8,11 @@ import { CheckButton } from "@/components/CheckButton";
 import {
   IconArrow,
   IconArrowDown,
+  IconCheck,
   IconCook,
   IconDelete,
   IconDots,
+  IconOthers,
   IconPlus,
 } from "@/components/Icon";
 
@@ -22,6 +24,7 @@ type Props = {
 
 export const ShoppingList = ({ data }: Props) => {
   const [isShow, setIsShow] = useState(false);
+  const [isShowOthers, setIsShowOthers] = useState(false);
 
   return (
     <div>
@@ -30,14 +33,52 @@ export const ShoppingList = ({ data }: Props) => {
           {list.own_notes && (
             <div className={styles.parent}>
               <h2>{list.name}</h2>
-              <button
-                type="button"
-                title="メモを追加する"
-                className={styles.button}
-                // TODO: メモ追加ロジックは後ほど実装する
-              >
-                <IconPlus color="#6F6E77" />
-              </button>
+              <div className={styles["button-area"]}>
+                <button
+                  type="button"
+                  title="メモを追加する"
+                  className={styles.button}
+                  // TODO: メモ追加ロジックは後ほど実装する
+                >
+                  <IconPlus color="#6F6E77" />
+                </button>
+                <button
+                  type="button"
+                  title="その他選択"
+                  className={styles["button-others"]}
+                  onClick={() => setIsShowOthers((prev) => !prev)}
+                >
+                  <IconOthers color="#1A1523" />
+                </button>
+                {isShowOthers && (
+                  <div className={styles["popup-others"]}>
+                    <ul className={styles["popup-list"]}>
+                      <li>
+                        <button
+                          type="button"
+                          className={styles["popup-button-delete-item"]}
+                        >
+                          <span className={styles["popup-icon"]}>
+                            <IconCheck color="#6F6E77" />
+                          </span>
+                          完了したアイテムだけ削除する
+                        </button>
+                      </li>
+                      <li>
+                        <button
+                          type="button"
+                          className={styles["popup-button-delete-item"]}
+                        >
+                          <span className={styles["popup-icon"]}>
+                            <IconDelete color="#6F6E77" />
+                          </span>
+                          すべてのアイテムを削除する
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           )}
           {!list.own_notes && (
