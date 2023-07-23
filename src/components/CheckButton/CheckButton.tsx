@@ -26,7 +26,7 @@ export const CheckButton = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.checkbox}>
-        {/* TODO: チェック状態をもとに処理するロジックは後に実装する */}
+        {/* TODO: チェック状態をもとに処理するロジックを実装する */}
         <input
           type="checkbox"
           id={id}
@@ -47,11 +47,15 @@ export const CheckButton = ({
       </button>
       {isShow && (
         <div className={styles.popup} ref={popupRef}>
-          {/* TODO: 下記ボタン押下時のロジックは後ほど実装する */}
+          {/* TODO: 各ボタン押下後のロジックを実装する */}
           <ul className={styles["popup-list"]}>
             {position > 1 && (
               <li>
-                <button type="button" className={styles["popup-button"]}>
+                <button
+                  type="button"
+                  className={styles["popup-button"]}
+                  onClick={() => alert("上に移動する（未実装）")}
+                >
                   <span className={styles["popup-icon"]}>
                     <IconArrow color="#1A1523" />
                   </span>
@@ -61,7 +65,11 @@ export const CheckButton = ({
             )}
             {!isLastItem && (
               <li>
-                <button type="button" className={styles["popup-button"]}>
+                <button
+                  type="button"
+                  className={styles["popup-button"]}
+                  onClick={() => alert("下に移動する（未実装）")}
+                >
                   <span className={styles["popup-icon"]}>
                     <IconArrowDown color="#1A1523" />
                   </span>
@@ -72,7 +80,11 @@ export const CheckButton = ({
           </ul>
           <ul className={styles["popup-list"]}>
             <li>
-              <button type="button" className={styles["popup-button"]}>
+              <button
+                type="button"
+                className={styles["popup-button"]}
+                onClick={() => alert("アイテムを削除する（未実装）")}
+              >
                 <span className={styles["popup-icon"]}>
                   <IconDelete color="#6F6E77" />
                 </span>
