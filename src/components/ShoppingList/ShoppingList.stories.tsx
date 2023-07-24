@@ -18,15 +18,15 @@ export const Default = {
           materials: [
             {
               name: "ブロッコリー",
-              memo: "ブロッコリーおいしい",
               is_checked: true,
+              position: 1,
               created_at: "2023-6-16 10:45",
               updated_at: "2023-6-20 15:45",
             },
             {
               name: "チーズ",
-              memo: "とろけるチーズ",
               is_checked: false,
+              position: 2,
               created_at: "2023-6-16 10:45",
               updated_at: "2023-6-20 15:45",
             },
@@ -41,15 +41,15 @@ export const Default = {
           materials: [
             {
               name: "じゃがいも",
-              memo: "中くらいの大きさ",
               is_checked: false,
+              position: 1,
               created_at: "2023-6-16 10:45",
               updated_at: "2023-6-20 15:45",
             },
             {
               name: "カレールウ",
-              memo: "",
               is_checked: false,
+              position: 2,
               created_at: "2023-6-16 10:45",
               updated_at: "2023-6-20 15:45",
             },
