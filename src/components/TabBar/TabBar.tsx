@@ -6,31 +6,33 @@ import styles from "./TabBar.module.scss";
 
 export type Props = {
   data: {
-    label: string;
-    isActive: boolean;
-  }[];
+    tabs: {
+      id: number;
+      label: string;
+    }[];
+    activeTabId: number;
+  };
 };
 
 export const TabBar = ({ data }: Props) => {
-  const initial = data.findIndex((d) => d.isActive);
-  const [activeTab, setActiveTab] = useState(initial);
+  const [activeTab, setActiveTab] = useState(data.activeTabId);
 
-  const handleTabClick = (index: number) => {
-    setActiveTab(index);
+  const handleTabClick = (tabId: number) => {
+    setActiveTab(tabId);
   };
 
   return (
     <div>
       <div className={styles.tabs}>
-        {data.map((list, index) => (
+        {data.tabs.map((tab) => (
           <button
-            key={index}
+            key={tab.id}
             className={`${styles.tab} ${
-              activeTab === index ? styles.active : ""
+              activeTab === tab.id ? styles.active : ""
             }`}
-            onClick={() => handleTabClick(index)}
+            onClick={() => handleTabClick(tab.id)}
           >
-            {list.label}
+            {tab.label}
           </button>
         ))}
       </div>
