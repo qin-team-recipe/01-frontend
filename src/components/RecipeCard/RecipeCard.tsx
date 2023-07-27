@@ -27,7 +27,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           src="/images/recipe-dummy.png"
           alt=""
           width={173}
-          height={174}
+          height={173}
           className={styles.img}
         />
       </div>
