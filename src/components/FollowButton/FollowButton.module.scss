@@ -1,0 +1,30 @@
+@import "@/styles/mixin";
+
+.button {
+  padding: 4px 16px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  line-height: 20px;
+  border-radius: 6px;
+}
+
+.initial {
+  color: #fff;
+  background-color: #e54d2e;
+  border-color: transparent;
+
+  &:hover {
+    background-color: #db4324;
+  }
+}
+
+.following {
+  background-color: #fff;
+  color: #ca3214;
+  border-color: #f3b0a2;
+
+  &:hover {
+    border-color: #ea9280;
+  }
+}
