@@ -16,12 +16,14 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   return (
     <div>
       <div className={styles.imgWrapper}>
-        <div className={styles.favCount}>
-          <Image src="/icon/heart.svg" width={10} height={9} alt="" />
-          <span className={styles.favNumber}>
-            {favCountNumber.toLocaleString()}
-          </span>
-        </div>
+        {favCountNumber > 0 && (
+          <div className={styles.favCount}>
+            <Image src="/icon/heart.svg" width={10} height={9} alt="" />
+            <span className={styles.favNumber}>
+              {favCountNumber.toLocaleString()}
+            </span>
+          </div>
+        )}
 
         <Image
           src="/images/recipe-dummy.png"
