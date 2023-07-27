@@ -4,21 +4,27 @@ import { useState } from "react";
 
 import styles from "./TabBar.module.scss";
 
-export type Props = {
-  data: {
-    tabs: {
-      id: number;
-      label: string;
-    }[];
-    activeTabId: number;
-  };
-};
+interface TabData {
+  id: number;
+  label: string;
+}
 
-export const TabBar = ({ data }: Props) => {
+interface Props {
+  data: {
+    activeTabId: number;
+    tabs: TabData[];
+  };
+  onDataSend?: (tabId: number) => void;
+}
+
+export const TabBar = ({ data, onDataSend }: Props) => {
   const [activeTab, setActiveTab] = useState(data.activeTabId);
 
   const handleTabClick = (tabId: number) => {
     setActiveTab(tabId);
+    if (onDataSend) {
+      onDataSend(tabId);
+    }
   };
 
   return (

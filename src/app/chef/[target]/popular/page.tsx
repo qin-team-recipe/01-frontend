@@ -2,7 +2,7 @@
 
 import { TabBar } from "@/components/TabBar";
 
-import styles from "./chef.module.scss";
+import styles from "./popular.module.scss";
 
 // TODO: APIと連携するまでの仮実装
 const dummyData = {
@@ -20,7 +20,7 @@ const handleTab = (tabId: number) => {
 export default function Page({ params }: { params: { target: string } }) {
   return (
     <main className={styles.page}>
-      <div>chef/{params.target}</div>
+      <div>chef/{params.target}/popular</div>
       <TabBar data={dummyData} onDataSend={handleTab} />
     </main>
   );
