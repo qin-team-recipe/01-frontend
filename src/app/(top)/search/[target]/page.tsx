@@ -110,12 +110,15 @@ export default function Page({ params }: { params: { target: string } }) {
   }, [queryWord]);
 
   // TODO: APIと連携するまでの仮実装
-  const dummyData = [
-    { id: 1, label: "レシピ" },
-    { id: 2, label: "シェフ" },
-  ];
+  const dummyData = {
+    tabs: [
+      { id: 1, label: "レシピ" },
+      { id: 2, label: "シェフ" },
+    ],
+    activeTabId: initial,
+  };
 
-  const handleTabChange = (id: number) => {
+  const handleTab = (id: number) => {
     console.log(params.target);
     console.log(queryWord);
 
@@ -131,11 +134,7 @@ export default function Page({ params }: { params: { target: string } }) {
 
   return (
     <div>
-      <TabBar
-        data={dummyData}
-        initial={initial}
-        handleTabChange={handleTabChange}
-      />
+      <TabBar data={dummyData} onDataSend={handleTab} />
       <div className={styles.result}>
         <div className={styles["result-title"]}>{searchTitle}</div>
         <div className={styles["result-list"]}>
