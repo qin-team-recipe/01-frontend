@@ -98,6 +98,7 @@ export default function Page() {
                 favCountNumber={recipe.favCountNumber}
                 name={recipe.name}
                 description={recipe.description}
+                isTop
               />
             </Link>
           ))}
