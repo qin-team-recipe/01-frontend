@@ -1,87 +1,26 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
+import { SearchChef } from "@/app/api/chefs/types";
+import { SearchRecipe } from "@/app/api/recipes/types";
+import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { TabBar } from "@/components/TabBar";
-import { SearchRepices } from "@/types/api";
 
 import styles from "./search-target.module.scss";
-
-const fetchSearchRecipes = async (
-  keyword: string
-): Promise<SearchRepices[]> => {
-  const res = await fetch(`/api/v1/search/recipe?keyword=${keyword}`);
-  if (!res.ok) {
-    console.error("検索結果の取得に失敗しました:");
-    // return [];
-  }
-
-  // return res.json();
-  // TODO: dummy data
-  return [
-    {
-      id: 3,
-      name: "グラタン",
-      description: "白が200色わかる方",
-      favorite_count: 12,
-      thumbnail: "https://example.com",
-      chef_name: "アンミカ",
-      created_at: "2023-6-16 10:45",
-      updated_at: "2023-6-20 15:45",
-    },
-    {
-      id: 4,
-      name: "スパゲッティ",
-      description: "トマトベースのソース",
-      favorite_count: 15,
-      thumbnail: "https://example.com",
-      chef_name: "ジュリア",
-      created_at: "2023-6-16 10:45",
-      updated_at: "2023-6-20 15:45",
-    },
-    {
-      id: 5,
-      name: "グラタン",
-      description: "白が200色わかる方",
-      favorite_count: 12,
-      thumbnail: "https://example.com",
-      chef_name: "アンミカ",
-      created_at: "2023-6-16 10:45",
-      updated_at: "2023-6-20 15:45",
-    },
-    {
-      id: 6,
-      name: "スパゲッティ",
-      description: "トマトベースのソース",
-      favorite_count: 15,
-      thumbnail: "https://example.com",
-      chef_name: "ジュリア",
-      created_at: "2023-6-16 10:45",
-      updated_at: "2023-6-20 15:45",
-    },
-  ];
-};
-
-// const fetchTrendingRecipes = async () => {
-//   const res = await fetch("/api/v1/trending_recipes");
-//   return res.json;
-// };
-
-// const fetchChefs = async () => {
-//   const res = await fetch("/api/v1/chefs");
-//   return res.json;
-// };
 
 export default function Page({ params }: { params: { target: string } }) {
   const searchParams = useSearchParams();
   const queryWord = searchParams.get("q");
   const isRecipe = params.target === "recipe";
-  const initial = isRecipe ? 1 : 2;
+  const activeTab = isRecipe ? 1 : 2;
   const [searchRecipeResults, setSearchRecipeResults] = useState<
-    SearchRepices[]
+    SearchRecipe[]
   >([]);
+  const [searchChefResults, setSearchChefResults] = useState<SearchChef[]>([]);
   const router = useRouter();
 
   let searchTitle = "";
@@ -96,45 +35,85 @@ export default function Page({ params }: { params: { target: string } }) {
     }
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      if (queryWord) {
-        const decodeQueryWord = decodeURIComponent(queryWord);
-        const data = await fetchSearchRecipes(decodeQueryWord);
-        setSearchRecipeResults(data);
-      } else {
-        setSearchRecipeResults([]);
-      }
-    };
-    fetchData();
-  }, [queryWord]);
+  const searchRecipe = async () => {
+    let response;
+    if (queryWord) {
+      const decodeQueryWord = decodeURIComponent(queryWord);
+      response = await fetch(`/api/recipes/search?keyword=${decodeQueryWord}`);
+    } else {
+      response = await fetch(`/api/recipes`);
+    }
 
-  // TODO: APIと連携するまでの仮実装
-  const dummyData = {
+    if (!response.ok) {
+      setSearchRecipeResults([]);
+      throw new Error("Failed to fetch data");
+    }
+
+    const recipes: SearchRecipe[] = await response.json();
+    setSearchRecipeResults(recipes);
+  };
+
+  const searchChef = async () => {
+    let response;
+    if (queryWord) {
+      const decodeQueryWord = decodeURIComponent(queryWord);
+      response = await fetch(`/api/chefs/search?keyword=${decodeQueryWord}`);
+    } else {
+      response = await fetch(`/api/chefs`);
+    }
+
+    if (!response.ok) {
+      setSearchChefResults([]);
+      throw new Error("Failed to fetch data");
+    }
+
+    const chefs: SearchChef[] = await response.json();
+    setSearchChefResults(chefs);
+  };
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     if (isRecipe) {
+  //       searchRecipe();
+  //     } else {
+  //       searchChef();
+  //     }
+  //   };
+  //   fetchData();
+  // }, [queryWord, isRecipe]);
+
+  const fetchData = async () => {
+    if (isRecipe) {
+      searchRecipe();
+    } else {
+      searchChef();
+    }
+  };
+  fetchData();
+
+  const tabData = {
     tabs: [
       { id: 1, label: "レシピ" },
       { id: 2, label: "シェフ" },
     ],
-    activeTabId: initial,
+    activeTabId: activeTab,
   };
 
   const handleTab = (id: number) => {
-    console.log(params.target);
-    console.log(queryWord);
-
     if (queryWord) {
       const decodeQueryWord = decodeURIComponent(queryWord);
       const encode = encodeURIComponent(encodeURIComponent(decodeQueryWord));
       const target = id === 1 ? "recipe" : "chef";
       router.push(`search/${target}?q=${encode}`);
-      // } else {
-      //   router.push(`search/${params.target}`);
+    } else {
+      const target = id === 1 ? "recipe" : "chef";
+      router.push(`search/${target}`);
     }
   };
 
   return (
     <div>
-      <TabBar data={dummyData} onDataSend={handleTab} />
+      <TabBar data={tabData} onDataSend={handleTab} />
       <div className={styles.result}>
         <div className={styles["result-title"]}>{searchTitle}</div>
         <div className={styles["result-list"]}>
@@ -145,6 +124,20 @@ export default function Page({ params }: { params: { target: string } }) {
                 description={result.description}
                 name={result.name}
               />
+            </div>
+          ))}
+        </div>
+        <div className={styles["chef-list"]}>
+          {searchChefResults.map((chef) => (
+            <div key={chef.id}>
+              <Link href={`/chef/${chef.id}`} key={chef.id}>
+                <ChefCard
+                  src={chef.thumbnail}
+                  name={chef.name}
+                  description={chef.description}
+                  count={chef.recipe_count}
+                />
+              </Link>
             </div>
           ))}
         </div>
