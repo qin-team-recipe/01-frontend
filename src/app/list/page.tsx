@@ -7,19 +7,21 @@ import styles from "./list.module.scss";
 
 export type CartsType = {
   user_id: number;
-  lists: {
-    id: number;
-    recipe_id: number | null;
+  lists: CartsListType[];
+};
+
+export type CartsListType = {
+  id: number;
+  recipe_id: number | null;
+  name: string;
+  own_notes: boolean;
+  position: number;
+  materials: {
     name: string;
-    own_notes: boolean;
     position: number;
-    materials: {
-      name: string;
-      memo: string;
-      is_checked: boolean;
-      created_at: string;
-      updated_at: string;
-    }[];
+    is_checked: boolean;
+    created_at: string;
+    updated_at: string;
   }[];
 };
 
@@ -36,15 +38,15 @@ const dummyData: CartsType = {
       materials: [
         {
           name: "ブロッコリー",
-          memo: "ブロッコリーおいしい",
           is_checked: true,
+          position: 1,
           created_at: "2023-6-16 10:45",
           updated_at: "2023-6-20 15:45",
         },
         {
           name: "チーズ",
-          memo: "とろけるチーズ",
           is_checked: false,
+          position: 2,
           created_at: "2023-6-16 10:45",
           updated_at: "2023-6-20 15:45",
         },
@@ -59,15 +61,15 @@ const dummyData: CartsType = {
       materials: [
         {
           name: "じゃがいも",
-          memo: "中くらいの大きさ",
           is_checked: false,
+          position: 1,
           created_at: "2023-6-16 10:45",
           updated_at: "2023-6-20 15:45",
         },
         {
           name: "カレールウ",
-          memo: "",
           is_checked: false,
+          position: 2,
           created_at: "2023-6-16 10:45",
           updated_at: "2023-6-20 15:45",
         },
