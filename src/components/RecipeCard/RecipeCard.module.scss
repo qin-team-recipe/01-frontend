@@ -1,9 +1,17 @@
 @import "@/styles/mixin";
 
+.imgWrapperTop {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 5px;
+}
+
 .imgWrapper {
   position: relative;
   width: 173px;
   height: 173px;
+  margin-bottom: 5px;
 }
 
 .img {
@@ -48,7 +56,6 @@
   font-weight: 700;
   font-size: 12px;
   line-height: 18px;
-  width: 173px;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -68,7 +75,6 @@
   order: 1;
   align-self: stretch;
   flex-grow: 0;
-  width: 173px;
   word-wrap: break-word;
   overflow: hidden;
   text-overflow: ellipsis;
