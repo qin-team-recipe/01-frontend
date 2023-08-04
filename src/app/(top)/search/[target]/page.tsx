@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { SearchChef } from "@/app/api/chefs/types";
 import { SearchRecipe } from "@/app/api/recipes/types";
@@ -35,7 +35,7 @@ export default function Page({ params }: { params: { target: string } }) {
     }
   }
 
-  const searchRecipe = async () => {
+  const searchRecipe = useCallback(async () => {
     let response;
     if (queryWord) {
       const decodeQueryWord = decodeURIComponent(queryWord);
@@ -51,9 +51,9 @@ export default function Page({ params }: { params: { target: string } }) {
 
     const recipes: SearchRecipe[] = await response.json();
     setSearchRecipeResults(recipes);
-  };
+  }, [queryWord]);
 
-  const searchChef = async () => {
+  const searchChef = useCallback(async () => {
     let response;
     if (queryWord) {
       const decodeQueryWord = decodeURIComponent(queryWord);
@@ -69,27 +69,18 @@ export default function Page({ params }: { params: { target: string } }) {
 
     const chefs: SearchChef[] = await response.json();
     setSearchChefResults(chefs);
-  };
+  }, [queryWord]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     if (isRecipe) {
-  //       searchRecipe();
-  //     } else {
-  //       searchChef();
-  //     }
-  //   };
-  //   fetchData();
-  // }, [queryWord, isRecipe]);
-
-  const fetchData = async () => {
-    if (isRecipe) {
-      searchRecipe();
-    } else {
-      searchChef();
-    }
-  };
-  fetchData();
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isRecipe) {
+        searchRecipe();
+      } else {
+        searchChef();
+      }
+    };
+    fetchData();
+  }, [queryWord, isRecipe, searchRecipe, searchChef]);
 
   const tabData = {
     tabs: [

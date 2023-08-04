@@ -21,9 +21,6 @@ export const SearchInput: React.FC = () => {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    console.log(decodeQueryWord);
-    console.log(searchWord);
-
     if (decodeQueryWord === searchWord) {
       return;
     }
