@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { FollowButton } from "@/components/FollowButton";
+
 import styles from "../recipe.module.scss";
 
 interface Step {
@@ -111,6 +113,14 @@ const recipeArray: Recipe[] = [recipeData];
 
 const chefArray: Chef[] = [chefData];
 
+const tabData = {
+  tabs: [
+    { id: 1, label: "作り方" },
+    { id: 2, label: "材料" },
+  ],
+  activeTabId: 1,
+};
+
 export default function Page({ params }: { params: { id: string } }) {
   const recipe = recipeArray.find((recipe) => recipe.id === params.id);
 
@@ -147,9 +157,15 @@ export default function Page({ params }: { params: { id: string } }) {
             <Link href={`/chef/${chef.id}`}>{chef.name}</Link>
           </div>
           <div>
-            <strong>{chef.follower_count}</strong> フォロワー
+            <strong>{chef.follower_count}</strong> お気に入り
           </div>
         </div>
+
+        <FollowButton
+          initialText={"お気に入りに追加"}
+          followingText={"お気に入りに追加済"}
+          isFollowing={false} // TODO: ユーザーがこのレシピをお気に入りにしているかどうかをAPIで返すようにしてから、ここの制御の実装をする
+        />
       </section>
     </main>
   );
