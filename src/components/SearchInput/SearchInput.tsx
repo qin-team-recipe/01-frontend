@@ -22,6 +22,7 @@ export const SearchInput: React.FC = () => {
 
   useEffect(() => {
     if (decodeQueryWord === searchWord) {
+      setLoading(false);
       return;
     }
 
