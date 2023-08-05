@@ -1,0 +1,27 @@
+.result {
+  padding: 20px 0;
+}
+
+.result-title {
+  height: 24px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #1a1523;
+  padding: 0 16px;
+}
+
+.result-list {
+  margin-top: 8px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.chef-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

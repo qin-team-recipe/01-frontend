@@ -9,27 +9,36 @@ import styles from "./SearchInput.module.scss";
 
 export const SearchInput: React.FC = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const queryWord = searchParams.get("q");
   const path = usePathname();
-  const params = useSearchParams();
-  const queryWord = params.get("q");
   const isSearchPage = path.startsWith("/search/");
+  const target = path.startsWith("/search/recipe") ? "recipe" : "chef";
 
-  const [searchWord, setSearchWord] = useState(queryWord ?? "");
+  const decodeQueryWord = queryWord ? decodeURIComponent(queryWord) : "";
+  const [searchWord, setSearchWord] = useState(decodeQueryWord ?? "");
   const [loading, setLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    if (queryWord === searchWord) {
+    if (decodeQueryWord === searchWord) {
       return;
     }
 
     const delaySearch = setTimeout(() => {
       setLoading(false);
       if (searchWord) {
-        router.push(`search/recipe?q=${searchWord}`);
+        // urlのクエリパラメータの表示もエンコードしたいため、encodeURIComponentを二重にする
+        // エンコードすることによりNext.jsのバグを回避
+        const encode = encodeURIComponent(encodeURIComponent(searchWord));
+        if (isSearchPage) {
+          router.push(`search/${target}?q=${encode}`);
+        } else {
+          router.push(`search/recipe?q=${encode}`);
+        }
       } else {
         if (isSearchPage) {
-          router.replace("search/recipe");
+          router.replace(`search/${target}`);
         }
         setSearchWord("");
       }
@@ -38,11 +47,17 @@ export const SearchInput: React.FC = () => {
     return () => {
       clearTimeout(delaySearch);
     };
-  }, [queryWord, searchWord, router, isSearchPage]);
+  }, [decodeQueryWord, searchWord, router, isSearchPage, target]);
 
   const handleSearchWord = (e: ChangeEvent<HTMLInputElement>) => {
     setLoading(true);
     setSearchWord(e.target.value);
+  };
+
+  const handleClose = () => {
+    inputRef.current?.focus();
+    router.replace(`search/${target}`);
+    setSearchWord("");
   };
 
   return (
@@ -89,9 +104,7 @@ export const SearchInput: React.FC = () => {
               height={20}
               alt=""
               onClick={() => {
-                router.replace("search/recipe");
-                setSearchWord("");
-                inputRef.current?.focus();
+                handleClose();
               }}
             />
           ) : null}
