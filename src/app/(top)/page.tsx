@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
+import { SearchInput } from "@/components/SearchInput";
 
 import styles from "./top.module.scss";
 
@@ -70,60 +71,65 @@ const recipeList = [
 
 export default function Page() {
   return (
-    <div className={styles.wrap}>
-      <section className={styles.section}>
-        <h2 className={styles.title}>注目のシェフ</h2>
-        <div className={styles["featured-chef"]}>
-          {chefList.map((chef) => (
-            <Link href={`/chef/${chef.id}`} key={chef.id}>
-              <div className={styles["chef-image"]}>
-                <Image src={chef.thumbnail} fill sizes="100%" alt="" />
-                <p className={styles["chef-name"]}>{chef.name}</p>
-              </div>
+    <>
+      <div className={styles["search-section"]}>
+        <SearchInput />
+      </div>
+      <div className={styles.wrap}>
+        <section className={styles.section}>
+          <h2 className={styles.title}>注目のシェフ</h2>
+          <div className={styles["featured-chef"]}>
+            {chefList.map((chef) => (
+              <Link href={`/chef/${chef.id}`} key={chef.id}>
+                <div className={styles["chef-image"]}>
+                  <Image src={chef.thumbnail} fill sizes="100%" alt="" />
+                  <p className={styles["chef-name"]}>{chef.name}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className={styles.section}>
+          <div className={styles["title-bar"]}>
+            <h2 className={styles.title}>話題のレシピ</h2>
+            <Link href={"/search/recipe"} className={styles.more}>
+              もっと見る
             </Link>
-          ))}
-        </div>
-      </section>
-      <section className={styles.section}>
-        <div className={styles["title-bar"]}>
-          <h2 className={styles.title}>話題のレシピ</h2>
-          <Link href={"/search/recipe"} className={styles.more}>
-            もっと見る
-          </Link>
-        </div>
-        <div className={styles["topic-recipe"]}>
-          {recipeList.map((recipe) => (
-            <Link href="" key={recipe.id}>
-              <RecipeCard
-                favCountNumber={recipe.favCountNumber}
-                name={recipe.name}
-                description={recipe.description}
-                isTop
-              />
+          </div>
+          <div className={styles["topic-recipe"]}>
+            {recipeList.map((recipe) => (
+              <Link href="" key={recipe.id}>
+                <RecipeCard
+                  favCountNumber={recipe.favCountNumber}
+                  name={recipe.name}
+                  description={recipe.description}
+                  isTop
+                />
+              </Link>
+            ))}
+          </div>
+        </section>
+        <section className={styles.section}>
+          <div className={styles["title-bar"]}>
+            <h2 className={styles.title}>シェフ</h2>
+            <Link href={"/search/chef"} className={styles.more}>
+              もっと見る
             </Link>
-          ))}
-        </div>
-      </section>
-      <section className={styles.section}>
-        <div className={styles["title-bar"]}>
-          <h2 className={styles.title}>シェフ</h2>
-          <Link href={"/search/chef"} className={styles.more}>
-            もっと見る
-          </Link>
-        </div>
-        <div className={styles["chef-list"]}>
-          {chefList.map((chef) => (
-            <Link href={`/chef/${chef.id}`} key={chef.id}>
-              <ChefCard
-                src={chef.thumbnail}
-                name={chef.name}
-                description={chef.description}
-                count={chef.recipe_count}
-              />
-            </Link>
-          ))}
-        </div>
-      </section>
-    </div>
+          </div>
+          <div className={styles["chef-list"]}>
+            {chefList.map((chef) => (
+              <Link href={`/chef/${chef.id}`} key={chef.id}>
+                <ChefCard
+                  src={chef.thumbnail}
+                  name={chef.name}
+                  description={chef.description}
+                  count={chef.recipe_count}
+                />
+              </Link>
+            ))}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
