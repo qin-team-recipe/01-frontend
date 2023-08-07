@@ -5,6 +5,7 @@ $page-width: 480px;
 $layout-gap: 20px;
 
 .layout {
+  font-size: 14px;
   @include pc {
     position: relative;
     display: flex;
