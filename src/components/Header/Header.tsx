@@ -24,7 +24,7 @@ export const Header = ({
 }: Props) => {
   return (
     <div className={styles.wrapper}>
-      <ContentsInner noSpace="full">
+      <ContentsInner>
         <div
           className={`${styles.headerArea} ${
             position ? styles[position] : ""
