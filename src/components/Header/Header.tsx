@@ -14,7 +14,7 @@ type Props = {
 
 export const Header = ({ children, h1, position, icon, href, textColor, textSize }: Props) => {
   return (
-    <div className={`${styles.titleWrapper} ${styles[position]} inner`}>
+    <div className={`${styles.titleWrapper} ${styles[position]} ${textColor ? styles[textColor] : ""} ${textSize ? styles[textSize] : ""} inner`}>
       {href ?
         <Link href={href} className={styles.link}>
           <span className={styles.icon}>{icon && icon}</span>
