@@ -4,9 +4,13 @@ import styles from "./ContentsInner.module.scss";
 
 type Props = {
   children: ReactElement;
-  noSpace?: "left" | "right" | "full"
+  noSpace?: "left" | "right" | "full";
 };
 
-export const ContentsInner: FC<Props> = ({ children }) => {
-  return <div className={`${styles.noSpace} inner`}>{children}</div>;
+export const ContentsInner: FC<Props> = ({ children, noSpace }) => {
+  return (
+    <div className={`inner ${(noSpace && styles[noSpace]) || ""}`}>
+      {children}
+    </div>
+  );
 };

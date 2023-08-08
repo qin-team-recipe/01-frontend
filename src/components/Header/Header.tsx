@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ContentsInner } from "../ContentsInner/ContentsInner";
 import styles from "./Header.module.scss";
 
 type Props = {
@@ -22,19 +23,25 @@ export const Header = ({
   textSize,
 }: Props) => {
   return (
-    <div
-      className={`${styles.titleWrapper} ${position ? styles[position] : ""} ${
-        textColor ? styles[textColor] : ""
-      } ${textSize ? styles[textSize] : ""} inner`}
-    >
-      {href ? (
-        <Link href={href} className={styles.link}>
-          <span className={styles.icon}>{icon && icon}</span>
-        </Link>
-      ) : (
-        <span className={styles.icon}>{icon && icon}</span>
-      )}
-      {h1 && <h1 className={styles.title}>{children}</h1>}
+    <div className={styles.wrapper}>
+      <ContentsInner noSpace="full">
+        <div
+          className={`${styles.headerArea} ${
+            position ? styles[position] : ""
+          } ${textColor ? styles[textColor] : ""} ${
+            textSize ? styles[textSize] : ""
+          }`}
+        >
+          {href ? (
+            <Link href={href} className={styles.link}>
+              <span className={styles.icon}>{icon && icon}</span>
+            </Link>
+          ) : (
+            <span className={styles.icon}>{icon && icon}</span>
+          )}
+          {h1 && <h1 className={styles.title}>{children}</h1>}
+        </div>
+      </ContentsInner>
     </div>
   );
 };

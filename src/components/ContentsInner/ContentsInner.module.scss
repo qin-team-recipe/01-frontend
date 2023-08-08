@@ -1,14 +1,14 @@
 @import "@/styles/mixin";
 
-.left{
-  margin-left: -16px;
+.left {
+  padding-left: 0;
 }
 
-.right{
-  margin-right: -16px;
+.right {
+  padding-right: 0;
 }
 
-.full{
-  margin-right: -16px;
-  margin-left: -16px;
+.full {
+  padding-right: 0;
+  padding-left: 0;
 }

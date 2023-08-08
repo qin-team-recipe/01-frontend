@@ -1,21 +1,28 @@
-.icon {
-  display: inline-block;
-  margin-right: 15px;
-  vertical-align: middle;
+.wrapper {
+  border-bottom: solid 1px #e4e2e4;
 }
 
-.titleWrapper {
+.headerArea {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 48px;
-  border-bottom: solid 1px #e4e2e4;
   &.left {
     justify-content: flex-start;
   }
   &.right {
     justify-content: flex-end;
   }
+}
+
+.link {
+  display: block;
+}
+
+.icon {
+  display: inline-block;
+  margin-right: 15px;
+  vertical-align: middle;
 }
 
 .title {
@@ -29,8 +36,4 @@
   .small {
     font-size: 16px;
   }
-}
-
-.link {
-  display: block;
 }
