@@ -32,8 +32,6 @@ export const Header = ({
     .join(" ");
   return (
     <div className={classNames}>
-      className={classNames}
-    >
       {href ? (
         <Link href={href} className={styles.link}>
           <span className={styles.icon}>{icon && icon}</span>
