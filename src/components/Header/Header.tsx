@@ -21,11 +21,16 @@ export const Header = ({
   textColor,
   textSize,
 }: Props) => {
+  const classNames = [
+    styles.titleWrapper,
+    position && styles[position],
+    textColor && styles[textColor],
+    textSize && styles[textSize],
+    "inner"
+  ].filter(Boolean).join(" ");
   return (
     <div
-      className={`${styles.titleWrapper} ${position ? styles[position] : ""} ${
-        textColor ? styles[textColor] : ""
-      } ${textSize ? styles[textSize] : ""} inner`}
+      className={classNames}
     >
       {href ? (
         <Link href={href} className={styles.link}>
