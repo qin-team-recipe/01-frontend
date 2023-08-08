@@ -26,10 +26,12 @@ export const Header = ({
     position && styles[position],
     textColor && styles[textColor],
     textSize && styles[textSize],
-    "inner"
-  ].filter(Boolean).join(" ");
+    "inner",
+  ]
+    .filter(Boolean)
+    .join(" ");
   return (
-    <div
+    <div className={classNames}>
       className={classNames}
     >
       {href ? (
