@@ -1,19 +1,19 @@
-.icon{
+.icon {
   display: inline-block;
   margin-right: 15px;
   vertical-align: middle;
 }
 
-.titleWrapper{
+.titleWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 48px;
   border-bottom: solid 1px #e4e2e4;
-  &.left{
+  &.left {
     justify-content: flex-start;
   }
-  &.right{
+  &.right {
     justify-content: flex-end;
   }
 }
@@ -23,14 +23,14 @@
   font-weight: 700;
   line-height: 1.2;
   color: #1a1523;
-  .gray{
+  .gray {
     color: rgba(2, 0, 16, 0.57);
   }
-  .small{
+  .small {
     font-size: 16px;
   }
 }
 
-.link{
+.link {
   display: block;
 }

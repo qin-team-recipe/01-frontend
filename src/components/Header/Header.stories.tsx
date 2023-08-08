@@ -8,7 +8,7 @@ export const Default = {
   args: {
     children: "Header",
     h1: true,
-    position: 'left',
+    position: "left",
     href: "test",
   },
 };
