@@ -5,6 +5,7 @@ import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchInput } from "@/components/SearchInput";
 
+import { Recipe } from "../api/recipes/types";
 import { TrendingChefs } from "../api/trending_chefs/types";
 import styles from "./top.module.scss";
 
@@ -47,33 +48,6 @@ const chefList = [
   },
 ];
 
-const recipeList = [
-  {
-    id: 3,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-  {
-    id: 4,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "マイレシピ",
-    favCountNumber: 0,
-  },
-  {
-    id: 5,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-  {
-    id: 6,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-];
-
 // 注目のシェフ
 const getTrendingChefs = async () => {
   const response = await fetch("http://localhost:3000/api/trending_chefs");
@@ -81,8 +55,16 @@ const getTrendingChefs = async () => {
   return trendingChefs;
 };
 
+// 話題のレシピ一覧
+const getRecipes = async () => {
+  const response = await fetch("http://localhost:3000/api/recipes");
+  const recipes: Recipe[] = await response.json();
+  return recipes;
+};
+
 export default async function Page() {
   const trendingChefs = await getTrendingChefs();
+  const recipes = await getRecipes();
 
   return (
     <>
@@ -111,10 +93,10 @@ export default async function Page() {
             </Link>
           </div>
           <div className={styles["topic-recipe"]}>
-            {recipeList.map((recipe) => (
+            {recipes.map((recipe) => (
               <Link href="" key={recipe.id}>
                 <RecipeCard
-                  favCountNumber={recipe.favCountNumber}
+                  favCountNumber={recipe.favorite_count}
                   name={recipe.name}
                   description={recipe.description}
                   isTop
