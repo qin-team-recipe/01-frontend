@@ -6,9 +6,9 @@ export const IconArrowBack = ({ color }: { color: string }) => (
     viewBox="0 0 24 24"
     fill="none"
     stroke={color}
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
     className="h-5 w-5"
     aria-hidden="true"
   >
