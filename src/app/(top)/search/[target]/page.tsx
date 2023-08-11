@@ -95,10 +95,10 @@ export default function Page({ params }: { params: { target: string } }) {
       const decodeQueryWord = decodeURIComponent(queryWord);
       const encode = encodeURIComponent(encodeURIComponent(decodeQueryWord));
       const target = id === 1 ? "recipe" : "chef";
-      router.push(`search/${target}?q=${encode}`);
+      router.push(`/search/${target}?q=${encode}`);
     } else {
       const target = id === 1 ? "recipe" : "chef";
-      router.push(`search/${target}`);
+      router.push(`/search/${target}`);
     }
   };
 

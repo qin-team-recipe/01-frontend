@@ -34,8 +34,9 @@ const dummyData = [
 // /trending_chefs
 export const GET = async () => {
   // const response = await fetch(`/api/v1/trending_chefs`);
-  // const data = await response.json();
+  // const data: { chefs: TrendingChefs[] } = await response.json();
+  // const chefs = data.chefs;
+  // return NextResponse.json(chefs);
   // TODO: dummy data
-  const data = dummyData;
-  return NextResponse.json(data);
+  return NextResponse.json(dummyData);
 };

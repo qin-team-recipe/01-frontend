@@ -69,7 +69,13 @@ const recipeList = [
   },
 ];
 
-export default function Page() {
+export default async function Page() {
+  // const response = await fetch("/api/trending_chefs");
+  // if (!response.ok) {
+  //   throw new Error("Failed to fetch data");
+  // }
+  // const trendingChefs: TrendingChefs[] = await response.json();
+
   return (
     <>
       <div className={styles["search-section"]}>
