@@ -4,10 +4,10 @@ import React from "react";
 import { IconClose } from "@/components/Icon";
 import { RecipeEdit } from "@/components/RecipeEdit";
 
-import styles from "../my-recipe.module.scss";
+import styles from "../../my-recipe.module.scss";
 
 export const metadata = {
-  title: "マイレシピ新規作成",
+  title: "マイレシピ編集",
 };
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
           下書き一覧
         </Link>
       </div>
-      <RecipeEdit type="new" />
+      <RecipeEdit type="edit" />
     </main>
   );
 }
