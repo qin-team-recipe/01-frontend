@@ -1,10 +1,11 @@
 @import "@/styles/mixin";
 
-.list {
+.recipe-edit {
+  padding-bottom: 32px;
   border-top: solid 1px #e4e2e4;
 }
 
-.list-title {
+.title {
   position: relative;
   display: flex;
   gap: 16px;
@@ -18,7 +19,7 @@
   }
 }
 
-.input-text {
+.input {
   display: block;
   width: 100%;
   padding: 8px 16px;
@@ -31,6 +32,12 @@
   }
 }
 
+.count-area {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
 .count-button {
   @include hover-active {
     opacity: 0.7;
@@ -41,13 +48,7 @@
   }
 }
 
-.count-list {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.plus-button {
+.button-plus {
   display: inline-flex;
   gap: 4px;
   align-items: center;
@@ -59,7 +60,7 @@
   }
 }
 
-.plus-button-icon {
+.button-plus-icon {
   display: inline-flex;
   width: 16px;
   height: 16px;
@@ -71,11 +72,11 @@
   }
 }
 
-.list-how {
+.how-area {
   position: relative;
 }
 
-.number-icon {
+.icon-number {
   position: absolute;
   top: 50%;
   left: 16px;
@@ -114,7 +115,7 @@
   white-space: nowrap;
 }
 
-.file-button {
+.button-file {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -128,7 +129,7 @@
   border-radius: 8px;
 }
 
-.file-button-icon {
+.button-file-icon {
   display: block;
   width: 20px;
   height: 20px;
