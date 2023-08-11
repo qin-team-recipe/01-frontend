@@ -5,6 +5,7 @@ import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchInput } from "@/components/SearchInput";
 
+import { Chef } from "../api/chefs/types";
 import { Recipe } from "../api/recipes/types";
 import { TrendingChefs } from "../api/trending_chefs/types";
 import styles from "./top.module.scss";
@@ -12,41 +13,6 @@ import styles from "./top.module.scss";
 export const metadata = {
   title: "トップ",
 };
-
-const chefList = [
-  {
-    id: 3,
-    name: "アンミカ",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 123,
-    thumbnail: "/images/featured-chef1.png",
-  },
-  {
-    id: 4,
-    name: "ジュリア",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef2.png",
-  },
-  {
-    id: 5,
-    name: "トム",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef3.png",
-  },
-  {
-    id: 6,
-    name: "しまぶー",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef4.png",
-  },
-];
 
 // 注目のシェフ
 const getTrendingChefs = async () => {
@@ -62,9 +28,17 @@ const getRecipes = async () => {
   return recipes;
 };
 
+// シェフ一覧
+const getChefs = async () => {
+  const response = await fetch("http://localhost:3000/api/chefs");
+  const chefs: Chef[] = await response.json();
+  return chefs;
+};
+
 export default async function Page() {
   const trendingChefs = await getTrendingChefs();
   const recipes = await getRecipes();
+  const chefs = await getChefs();
 
   return (
     <>
@@ -113,7 +87,7 @@ export default async function Page() {
             </Link>
           </div>
           <div className={styles["chef-list"]}>
-            {chefList.map((chef) => (
+            {chefs.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <ChefCard
                   src={chef.thumbnail}

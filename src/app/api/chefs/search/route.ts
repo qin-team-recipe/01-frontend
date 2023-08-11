@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const dummyData = [
   {
     id: 3,
-    name: "アンミカ",
+    name: "アンミカbbb",
     description:
       "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
     follower_count: 12,
