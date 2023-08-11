@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState } from "react";
 
-import { IconPlus } from "@/components/Icon";
+import { IconMinusBox, IconPlus, IconPlusBox } from "@/components/Icon";
 
 import styles from "./RecipeEdit.module.scss";
 
@@ -26,28 +25,19 @@ export const RecipeEdit = ({ type }: RecipeEditProps) => {
         <span>材料 / {peopleCount}人前</span>
         <div className={styles["count-area"]}>
           <button
+            title="人数を1人減らす"
             disabled={peopleCount === 1}
             className={styles["count-button"]}
             onClick={() => setPeopleCount((prev) => prev - 1)}
           >
-            {/* TODO: SVGコンポーネントに差し替え */}
-            <Image
-              src="/icon/tabler-icon-minus.svg"
-              width={16}
-              height={16}
-              alt="人数を1人減らす"
-            />
+            <IconMinusBox />
           </button>
           <button
+            title="人数を1人増やす"
             className={styles["count-button"]}
             onClick={() => setPeopleCount((prev) => prev + 1)}
           >
-            <Image
-              src="/icon/tabler-icon-plus.svg"
-              width={16}
-              height={16}
-              alt="人数を1人増やす"
-            />
+            <IconPlusBox />
           </button>
         </div>
       </div>

@@ -7,6 +7,8 @@ export { IconCook } from "@/components/Icon/IconCook";
 export { IconDelete } from "@/components/Icon/IconDelete";
 export { IconDots } from "@/components/Icon/IconDots";
 export { IconHeart } from "@/components/Icon/IconHeart";
+export { IconMinusBox } from "@/components/Icon/IconMinusBox";
 export { IconOthers } from "@/components/Icon/IconOthers";
 export { IconPlus } from "@/components/Icon/IconPlus";
+export { IconPlusBox } from "@/components/Icon/IconPlusBox";
 export { IconSearch } from "@/components/Icon/IconSearch";
