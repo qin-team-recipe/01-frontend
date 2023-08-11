@@ -1,5 +1,5 @@
 // レシピ検索 /recipes/search?keyword=:keyword
-export type SearchRecipe = {
+export type Recipe = {
   id: number;
   name: string;
   description: string;

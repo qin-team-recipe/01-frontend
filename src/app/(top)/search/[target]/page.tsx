@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import { SearchChef } from "@/app/api/chefs/types";
-import { SearchRecipe } from "@/app/api/recipes/types";
+import { Recipe } from "@/app/api/recipes/types";
 import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { TabBar } from "@/components/TabBar";
@@ -17,9 +17,7 @@ export default function Page({ params }: { params: { target: string } }) {
   const queryWord = searchParams.get("q");
   const isRecipe = params.target === "recipe";
   const activeTab = isRecipe ? 1 : 2;
-  const [searchRecipeResults, setSearchRecipeResults] = useState<
-    SearchRecipe[]
-  >([]);
+  const [searchRecipeResults, setSearchRecipeResults] = useState<Recipe[]>([]);
   const [searchChefResults, setSearchChefResults] = useState<SearchChef[]>([]);
   const router = useRouter();
 
@@ -49,7 +47,7 @@ export default function Page({ params }: { params: { target: string } }) {
       throw new Error("Failed to fetch data");
     }
 
-    const recipes: SearchRecipe[] = await response.json();
+    const recipes: Recipe[] = await response.json();
     setSearchRecipeResults(recipes);
   }, [queryWord]);
 
