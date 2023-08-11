@@ -4,6 +4,10 @@ import { SearchInput } from "@/components/SearchInput";
 
 import styles from "./layout.module.scss";
 
+export const metadata = {
+  title: "検索結果",
+};
+
 export default function SearchLayout({
   children,
 }: {

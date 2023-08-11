@@ -8,6 +8,10 @@ import { SearchInput } from "@/components/SearchInput";
 import { TrendingChefs } from "../api/trending_chefs/types";
 import styles from "./top.module.scss";
 
+export const metadata = {
+  title: "トップ",
+};
+
 const chefList = [
   {
     id: 3,
