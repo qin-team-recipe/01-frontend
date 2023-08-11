@@ -23,7 +23,7 @@ const getTrendingChefs = async () => {
 
 // 話題のレシピ一覧
 const getRecipes = async () => {
-  const response = await fetch("http://localhost:3000/api/recipes");
+  const response = await fetch("http://localhost:3000/api/recipes?count=10");
   const recipes: Recipe[] = await response.json();
   return recipes;
 };
