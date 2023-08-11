@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const dummyData = [
   {
     id: 3,
-    name: "アンミカ",
+    name: "アンミカsss",
     thumbnail: "/images/featured-chef1.png",
     created_at: "2023-6-16 10:45",
     updated_at: "2023-6-20 15:45",

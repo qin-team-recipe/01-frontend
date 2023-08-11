@@ -5,6 +5,7 @@ import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchInput } from "@/components/SearchInput";
 
+import { TrendingChefs } from "../api/trending_chefs/types";
 import styles from "./top.module.scss";
 
 const chefList = [
@@ -69,12 +70,15 @@ const recipeList = [
   },
 ];
 
+// 注目のシェフ
+const getTrendingChefs = async () => {
+  const response = await fetch("http://localhost:3000/api/trending_chefs");
+  const trendingChefs: TrendingChefs[] = await response.json();
+  return trendingChefs;
+};
+
 export default async function Page() {
-  // const response = await fetch("/api/trending_chefs");
-  // if (!response.ok) {
-  //   throw new Error("Failed to fetch data");
-  // }
-  // const trendingChefs: TrendingChefs[] = await response.json();
+  const trendingChefs = await getTrendingChefs();
 
   return (
     <>
@@ -85,7 +89,7 @@ export default async function Page() {
         <section className={styles.section}>
           <h2 className={styles.title}>注目のシェフ</h2>
           <div className={styles["featured-chef"]}>
-            {chefList.map((chef) => (
+            {trendingChefs.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <div className={styles["chef-image"]}>
                   <Image src={chef.thumbnail} fill sizes="100%" alt="" />
