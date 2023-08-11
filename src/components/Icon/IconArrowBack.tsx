@@ -9,8 +9,6 @@ export const IconArrowBack = ({ color }: { color: string }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className="h-5 w-5"
-    aria-hidden="true"
   >
     <path d="M5 12l14 0"></path>
     <path d="M5 12l6 6"></path>
