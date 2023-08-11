@@ -1,5 +1,5 @@
 // シェフ検索 /chefs/search?keyword=:keyword
-export type SearchChef = {
+export type Chef = {
   id: number;
   name: string;
   description: string;
