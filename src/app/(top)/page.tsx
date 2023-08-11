@@ -68,7 +68,7 @@ export default async function Page() {
           </div>
           <div className={styles["topic-recipe"]}>
             {recipes.map((recipe) => (
-              <Link href="" key={recipe.id}>
+              <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
                 <RecipeCard
                   favCountNumber={recipe.favorite_count}
                   name={recipe.name}
