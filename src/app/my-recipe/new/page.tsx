@@ -13,16 +13,16 @@ export const metadata = {
 export default function Home() {
   return (
     <main className={styles.page}>
-      {/* TODO: headerコンポーネントに差し替える */}
+      {/* TODO: headerコンポーネントに差し替える（要調整？） */}
       <div className={styles.head}>
         <button
           // TODO: 保存か破棄かを選択できる確認モーダルを表示させる（未実装）
-          className={styles["close-button"]}
+          className={styles.close}
           title="保存もしくは削除するか確認する"
         >
           <IconClose color={"#1A1523"} />
         </button>
-        <Link href="/my-recipe/drafts" className={styles["list-button"]}>
+        <Link href="/my-recipe/drafts" className={styles.link}>
           下書き一覧
         </Link>
       </div>
