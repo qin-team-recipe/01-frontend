@@ -1,6 +1,6 @@
 import React from "react";
 
-import { ListTitle } from "@/components/ListTitle";
+import { Header } from "@/components/Header";
 import { ShoppingList } from "@/components/ShoppingList";
 
 import styles from "./list.module.scss";
@@ -85,7 +85,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className={styles.page}>
-      <ListTitle>買い物リスト</ListTitle>
+      <Header h1>買い物リスト</Header>
       <ShoppingList data={dummyData} />
     </main>
   );
