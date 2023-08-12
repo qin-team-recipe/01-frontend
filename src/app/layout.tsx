@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Footer } from "@/components/Footer";
+import { Side } from "@/components/Side";
 
 import styles from "./layout.module.scss";
 
@@ -28,7 +28,7 @@ export default function RootLayout({
                   Top Chefs
                 </Link>
               </h1>
-              <Footer />
+              <Side />
             </div>
           </div>
           <div className={styles["layout-page"]}>{children}</div>

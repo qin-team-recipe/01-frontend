@@ -38,11 +38,13 @@ $layout-gap: 20px;
   }
 }
 
+// TODO:　CSS調整
 .layout-side {
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 999;
+  display: none;
   width: 100%;
   background-color: #fff;
   filter: drop-shadow(0px -2px 4px rgba(0, 0, 0, 0.12));
