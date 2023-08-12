@@ -40,3 +40,34 @@
   overflow: hidden;
   margin-right: 4px;
 }
+
+.stepSeparator {
+  border-bottom: 1px solid #8c8b8b;
+}
+
+.stepContainer {
+  margin: 5px 16px 5px 19px;
+  display: flex;
+}
+
+.stepNumber {
+  margin-top: 3px;
+}
+
+.stepCircle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #e54d2e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.stepDescription {
+  margin-left: 10px;
+  width: 90%;
+}
+

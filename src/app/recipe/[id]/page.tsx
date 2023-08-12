@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { FollowButton } from "@/components/FollowButton";
+import { TabBar } from "@/components/TabBar";
 
 import styles from "../recipe.module.scss";
 
@@ -58,10 +59,37 @@ const recipeData = {
   serving_size: 2,
   steps: [
     {
-      title: "野菜を切る",
+      title: "野菜を切るあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
     },
     {
       title: "鍋に材料を入れる",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
+    },
+    {
+      title: "盛り付ける",
     },
     {
       title: "盛り付ける",
@@ -130,6 +158,8 @@ export default function Page({ params }: { params: { id: string } }) {
     };
   }
 
+  const stepTitlesWithNumbers = recipe.steps.map((step, index) => ({ number: index + 1, title: step.title }))
+
   const chef = chefArray.find(
     (chef: Chef) => chef.name === recipe.chef_name
   ) as Chef;
@@ -167,6 +197,20 @@ export default function Page({ params }: { params: { id: string } }) {
           isFollowing={false} // TODO: ユーザーがこのレシピをお気に入りにしているかどうかをAPIで返すようにしてから、ここの制御の実装をする
         />
       </section>
+
+      <TabBar data={tabData} />
+      {stepTitlesWithNumbers.map(step => (
+        <div key={step.number} className={styles.stepSeparator}>
+          <div className={styles.stepContainer}>
+            <div className={styles.stepNumber} >
+              <div className={styles.stepCircle} >{step.number}</div>
+            </div>
+            <div className={styles.stepDescription} >
+              {step.title}
+            </div>
+          </div>
+        </div>
+      ))}
     </main>
   );
 }
