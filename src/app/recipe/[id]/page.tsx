@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { FollowButton } from "@/components/FollowButton";
+import { IconAddCart } from "@/components/Icon";
 import { TabBar } from "@/components/TabBar";
 
 import styles from "../recipe.module.scss";
@@ -59,7 +62,8 @@ const recipeData = {
   serving_size: 2,
   steps: [
     {
-      title: "野菜を切るあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
+      title:
+        "野菜を切るあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
     },
     {
       title: "鍋に材料を入れる",
@@ -149,6 +153,10 @@ const tabData = {
   activeTabId: 1,
 };
 
+const handleTab = (tabId: number) => {
+  console.log(tabId);
+};
+
 export default function Page({ params }: { params: { id: string } }) {
   const recipe = recipeArray.find((recipe) => recipe.id === params.id);
 
@@ -158,7 +166,7 @@ export default function Page({ params }: { params: { id: string } }) {
     };
   }
 
-  const stepTitlesWithNumbers = recipe.steps.map((step, index) => ({ number: index + 1, title: step.title }))
+  // const stepTitlesWithNumbers = recipe.steps.map((step, index) => ({ number: index + 1, title: step.title }))
 
   const chef = chefArray.find(
     (chef: Chef) => chef.name === recipe.chef_name
@@ -198,9 +206,9 @@ export default function Page({ params }: { params: { id: string } }) {
         />
       </section>
 
-      <TabBar data={tabData} />
-      {stepTitlesWithNumbers.map(step => (
-        <div key={step.number} className={styles.stepSeparator}>
+      <TabBar data={tabData} onDataSend={handleTab} />
+      {/* {stepTitlesWithNumbers.map(step => (
+        <div key={step.number} className={styles.separator}>
           <div className={styles.stepContainer}>
             <div className={styles.stepNumber} >
               <div className={styles.stepCircle} >{step.number}</div>
@@ -208,6 +216,22 @@ export default function Page({ params }: { params: { id: string } }) {
             <div className={styles.stepDescription} >
               {step.title}
             </div>
+          </div>
+        </div>
+      ))} */}
+
+      <div className={`${styles.separator} ${styles.materialHeader}`}>
+        <h1 className={styles.servingSize}>{recipe.serving_size}人前</h1>
+        <h1 className={styles.bulkAddCart}>
+          <IconAddCart color="#908E96" />
+          まとめてお買い物に追加
+        </h1>
+      </div>
+      {recipe.materials.map((material) => (
+        <div key={material.name} className={styles.separator}>
+          <div className={styles.materialContainer}>
+            <div className={styles.materialName}>{material.name}</div>
+            <IconAddCart color="#6F6E77" />
           </div>
         </div>
       ))}

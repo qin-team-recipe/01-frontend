@@ -1,3 +1,4 @@
+export { IconAddCart } from "@/components/Icon/IconAddCart";
 export { IconArrow } from "@/components/Icon/IconArrow";
 export { IconArrowDown } from "@/components/Icon/IconArrowDown";
 export { IconCart } from "@/components/Icon/IconCart";
