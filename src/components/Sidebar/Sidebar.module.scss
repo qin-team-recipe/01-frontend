@@ -1,31 +1,19 @@
 @import "@/styles/mixin";
 
-.layout-side {
-  display: none;
-
-  @include pc {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    z-index: 0;
-    display: flex;
-    column-gap: 20px;
-    align-items: flex-start;
-    width: auto;
-    width: $page-width + $layout-gap + $side-width;
-    transform: translateX(-50%);
-  }
+.sidebar {
+  display: flex;
+  column-gap: 20px;
+  align-items: flex-start;
 }
 
-.layout-side-main {
+.sidebar-contents {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-  width: $side-width;
   padding: 20px;
 }
 
-.layout-side-title-link {
+.sidebar-title-link {
   display: flex;
   column-gap: 10px;
   align-items: center;

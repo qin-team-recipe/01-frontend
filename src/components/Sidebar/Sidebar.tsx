@@ -5,16 +5,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { IconCart, IconHeart, IconSearch } from "../Icon";
-import styles from "./Side.module.scss";
+import styles from "./Sidebar.module.scss";
 
-export const Side = () => {
+export const Sidebar = () => {
   const pagePath = usePathname();
 
   return (
-    <div className={styles["layout-side"]}>
-      <div className={styles["layout-side-main"]}>
+    <div className={styles.sidebar}>
+      <div className={styles["sidebar-contents"]}>
         <h1>
-          <Link href="/" className={styles["layout-side-title-link"]}>
+          <Link href="/" className={styles["sidebar-title-link"]}>
             <Image src="/icon/chef.svg" width={32} height={32} alt="" />
             Top Chefs
           </Link>

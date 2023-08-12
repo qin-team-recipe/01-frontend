@@ -3,7 +3,7 @@ import "@/styles/utility.scss";
 
 import { Inter } from "next/font/google";
 
-import { Side } from "@/components/Side";
+import { Sidebar } from "@/components/Sidebar/Sidebar";
 
 import styles from "./layout.module.scss";
 
@@ -18,7 +18,11 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <div className={styles.layout}>
-          <Side />
+          <div className={styles.side}>
+            <div className={styles["side-inner"]}>
+              <Sidebar />
+            </div>
+          </div>
           <div className={styles.page}>{children}</div>
         </div>
       </body>

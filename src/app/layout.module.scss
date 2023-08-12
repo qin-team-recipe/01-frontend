@@ -1,5 +1,9 @@
 @import "@/styles/mixin";
 
+$side-width: 222px; // PCサイドバーの幅
+$page-width: 480px; // PCメインページの幅
+$layout-gap: 20px; // PCサイドバーとメインページの間の余白
+
 .layout {
   font-size: 14px;
 
@@ -21,6 +25,24 @@
       content: "";
     }
   }
+}
+
+.side {
+  display: none;
+
+  @include pc {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    display: block;
+    width: $page-width + $layout-gap + $side-width;
+    transform: translateX(-50%);
+  }
+}
+
+.side-inner {
+  width: $side-width;
 }
 
 .page {
