@@ -1,0 +1,25 @@
+@import "@/styles/mixin";
+
+.page {
+  background-color: #f9f8f9;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+
+.close {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+}
+
+.link {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(2, 0, 16, 0.57);
+}
