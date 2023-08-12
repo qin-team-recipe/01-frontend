@@ -1,5 +1,9 @@
 $breakpoints: 844px; // iphone14の縦幅
 
+$side-width: 222px; // PCサイドバーの幅
+$page-width: 480px; // PCメインページの幅
+$layout-gap: 20px; // PCサイドバーとメインページの間の余白
+
 @mixin sp {
   @media screen and (max-width: #{$breakpoints}) {
     @content;

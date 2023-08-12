@@ -1,5 +1,43 @@
 @import "@/styles/mixin";
 
+.layout-side {
+  display: none;
+
+  @include pc {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    display: flex;
+    column-gap: 20px;
+    align-items: flex-start;
+    width: auto;
+    width: $page-width + $layout-gap + $side-width;
+    transform: translateX(-50%);
+  }
+}
+
+.layout-side-main {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: $side-width;
+  padding: 20px;
+}
+
+.layout-side-title-link {
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+
+  @include hover-active {
+    opacity: 0.7;
+  }
+}
+
 .site-list {
   display: flex;
   flex-direction: column;
