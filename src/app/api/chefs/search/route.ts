@@ -51,7 +51,7 @@ const dummyData = [
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const keyword = searchParams.get("keyword");
-  // const response = await fetch(`/api/v1/chefs/search?keyword=${keyword}`);
+  // const response = await fetch(`${process.env.API_BACK_URL}/api/v1/chefs/search?keyword=${keyword}`);
   // const data = await response.json();
   // TODO: dummy data
   const data = dummyData;
