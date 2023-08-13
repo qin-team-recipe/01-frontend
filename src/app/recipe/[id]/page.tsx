@@ -219,7 +219,7 @@ export default function Page({ params }: { params: { id: string } }) {
                 <div className={styles.stepNumber} >
                   <div className={styles.stepCircle} >{step.number}</div>
                 </div>
-                <div className={styles.stepDescription} >
+                <div className={styles.stepTitle} >
                   {step.title}
                 </div>
               </div>
