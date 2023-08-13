@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 const dummyData = [
   {
     id: 3,
-    name: "アンミカ",
+    name: "アンミカbbb",
     description:
       "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
     follower_count: 12,
@@ -51,7 +51,7 @@ const dummyData = [
 export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const keyword = searchParams.get("keyword");
-  // const response = await fetch(`/api/v1/chefs/search?keyword=${keyword}`);
+  // const response = await fetch(`${process.env.API_BACK_URL}/api/v1/chefs/search?keyword=${keyword}`);
   // const data = await response.json();
   // TODO: dummy data
   const data = dummyData;

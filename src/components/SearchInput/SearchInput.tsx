@@ -33,13 +33,13 @@ export const SearchInput: React.FC = () => {
         // エンコードすることによりNext.jsのバグを回避
         const encode = encodeURIComponent(encodeURIComponent(searchWord));
         if (isSearchPage) {
-          router.push(`search/${target}?q=${encode}`);
+          router.push(`/search/${target}?q=${encode}`);
         } else {
-          router.push(`search/recipe?q=${encode}`);
+          router.push(`/search/recipe?q=${encode}`);
         }
       } else {
         if (isSearchPage) {
-          router.replace(`search/${target}`);
+          router.replace(`/search/${target}`);
         }
         setSearchWord("");
       }
@@ -57,7 +57,7 @@ export const SearchInput: React.FC = () => {
 
   const handleClose = () => {
     inputRef.current?.focus();
-    router.replace(`search/${target}`);
+    router.replace(`/search/${target}`);
     setSearchWord("");
   };
 

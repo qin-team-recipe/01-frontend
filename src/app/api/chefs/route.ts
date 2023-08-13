@@ -3,9 +3,9 @@ import { NextResponse } from "next/server";
 const dummyData = [
   {
     id: 3,
-    name: "アンミカ",
+    name: "アンミカaaa",
     description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
+      "！初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
     follower_count: 12,
     recipe_count: 123,
     thumbnail: "/images/featured-chef1.png",
@@ -49,7 +49,7 @@ const dummyData = [
 
 // /recipes or /recipes?count=10
 export const GET = async () => {
-  // const response = await fetch(`/api/v1/recipes`);
+  // const response = await fetch(`${process.env.API_BACK_URL}/api/v1/recipes`);
   // const data = await response.json();
   // TODO: dummy data
   const data = dummyData;

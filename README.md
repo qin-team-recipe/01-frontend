@@ -24,3 +24,15 @@ yarn dev
 | [CSS Modules](https://marketplace.visualstudio.com/items?itemName=clinyong.vscode-css-modules) | CSS Modulesで実装したCSSのクラス名を自動補完する |
 | [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables) | CSS（SASS・SCSS）で定義したCSSカスタムプロパティ（変数）名を自動補完する |
 | [SCSS Everywhere](https://marketplace.visualstudio.com/items?itemName=gencer.html-slim-scss-css-class-completion) | SCSSで定義したCSSのクラス名を自動補完する |
+
+
+## 環境変数
+
+- 環境変数の設定
+  - root（01-frontendディレクトリ）直下に「.env」ファイルを作成する
+  - ローカル用は「.env.local」、本番用は「.env.production」
+- ローカル用設定
+  ```
+  API_FRONT_URL=http://localhost:3000
+  API_BACK_URL=http://localhost:6000
+  ```

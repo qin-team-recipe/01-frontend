@@ -5,71 +5,45 @@ import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchInput } from "@/components/SearchInput";
 
+import { Chef } from "../api/chefs/types";
+import { Recipe } from "../api/recipes/types";
+import { TrendingChefs } from "../api/trending_chefs/types";
 import styles from "./top.module.scss";
 
-const chefList = [
-  {
-    id: 3,
-    name: "アンミカ",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 123,
-    thumbnail: "/images/featured-chef1.png",
-  },
-  {
-    id: 4,
-    name: "ジュリア",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef2.png",
-  },
-  {
-    id: 5,
-    name: "トム",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef3.png",
-  },
-  {
-    id: 6,
-    name: "しまぶー",
-    description:
-      "初の絵本出版！『まねっこシェフ』・ふわふわ！スクランブルエッグ・にぎにぎ！おにぎり・主婦の友社より３月３日、２冊同時発売！絶賛発売中！",
-    recipe_count: 1234,
-    thumbnail: "/images/featured-chef4.png",
-  },
-];
+export const metadata = {
+  title: "トップ",
+};
 
-const recipeList = [
-  {
-    id: 3,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-  {
-    id: 4,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "マイレシピ",
-    favCountNumber: 0,
-  },
-  {
-    id: 5,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-  {
-    id: 6,
-    name: "トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン",
-    description: "ウルトラハイパー超すごいしまぶーシェフ",
-    favCountNumber: 1234,
-  },
-];
+// 注目のシェフ
+const getTrendingChefs = async () => {
+  const response = await fetch(
+    `${process.env.API_FRONT_URL}/api/trending_chefs`
+  );
+  const trendingChefs: TrendingChefs[] = await response.json();
+  return trendingChefs;
+};
 
-export default function Page() {
+// 話題のレシピ一覧
+const getRecipes = async () => {
+  const response = await fetch(
+    `${process.env.API_FRONT_URL}/api/recipes?count=10`
+  );
+  const recipes: Recipe[] = await response.json();
+  return recipes;
+};
+
+// シェフ一覧
+const getChefs = async () => {
+  const response = await fetch(`${process.env.API_FRONT_URL}/api/chefs`);
+  const chefs: Chef[] = await response.json();
+  return chefs;
+};
+
+export default async function Page() {
+  const trendingChefs = await getTrendingChefs();
+  const recipes = await getRecipes();
+  const chefs = await getChefs();
+
   return (
     <>
       <div className={styles["search-section"]}>
@@ -79,7 +53,7 @@ export default function Page() {
         <section className={styles.section}>
           <h2 className={styles.title}>注目のシェフ</h2>
           <div className={styles["featured-chef"]}>
-            {chefList.map((chef) => (
+            {trendingChefs.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <div className={styles["chef-image"]}>
                   <Image src={chef.thumbnail} fill sizes="100%" alt="" />
@@ -97,10 +71,10 @@ export default function Page() {
             </Link>
           </div>
           <div className={styles["topic-recipe"]}>
-            {recipeList.map((recipe) => (
-              <Link href="" key={recipe.id}>
+            {recipes.map((recipe) => (
+              <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
                 <RecipeCard
-                  favCountNumber={recipe.favCountNumber}
+                  favCountNumber={recipe.favorite_count}
                   name={recipe.name}
                   description={recipe.description}
                   isTop
@@ -117,7 +91,7 @@ export default function Page() {
             </Link>
           </div>
           <div className={styles["chef-list"]}>
-            {chefList.map((chef) => (
+            {chefs.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <ChefCard
                   src={chef.thumbnail}
