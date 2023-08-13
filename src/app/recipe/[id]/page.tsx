@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from 'react';
-
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from 'react';
 
 import { FollowButton } from "@/components/FollowButton";
 import { IconAddCart } from "@/components/Icon";
@@ -233,16 +232,16 @@ export default function Page({ params }: { params: { id: string } }) {
         <>
           <div className={`${styles.separator} ${styles.materialHeader}`}>
             <h1 className={styles.servingSize}>{recipe.serving_size}人前</h1>
-            <h1 className={styles.bulkAddCart}>
+            <button className={styles.bulkAddCart}>
               <IconAddCart color="#908E96" />
               まとめてお買い物に追加
-            </h1>
+            </button>
           </div>
           {recipe.materials.map((material) => (
             <div key={material.name} className={styles.separator}>
               <div className={styles.materialContainer}>
                 <div className={styles.materialName}>{material.name}</div>
-                <IconAddCart color="#6F6E77" />
+                <button><IconAddCart color="#6F6E77" /></button>
               </div>
             </div>
           ))}
