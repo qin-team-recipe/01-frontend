@@ -16,21 +16,25 @@ export const metadata = {
 
 // 注目のシェフ
 const getTrendingChefs = async () => {
-  const response = await fetch("http://localhost:3000/api/trending_chefs");
+  const response = await fetch(
+    `${process.env.API_FRONT_URL}/api/trending_chefs`
+  );
   const trendingChefs: TrendingChefs[] = await response.json();
   return trendingChefs;
 };
 
 // 話題のレシピ一覧
 const getRecipes = async () => {
-  const response = await fetch("http://localhost:3000/api/recipes?count=10");
+  const response = await fetch(
+    `${process.env.API_FRONT_URL}/api/recipes?count=10`
+  );
   const recipes: Recipe[] = await response.json();
   return recipes;
 };
 
 // シェフ一覧
 const getChefs = async () => {
-  const response = await fetch("http://localhost:3000/api/chefs");
+  const response = await fetch(`${process.env.API_FRONT_URL}/api/chefs`);
   const chefs: Chef[] = await response.json();
   return chefs;
 };
