@@ -18,6 +18,8 @@ interface Props {
 }
 
 export const TabBar = ({ data, onDataSend }: Props) => {
+  console.log("data", data)
+  console.log("onDataSend", onDataSend)
   const [activeTab, setActiveTab] = useState(data.activeTabId);
 
   const handleTabClick = (tabId: number) => {
