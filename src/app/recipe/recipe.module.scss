@@ -108,3 +108,16 @@
   line-height: normal;
   margin: 0 19px 10px 0;
 }
+
+.copyButton {
+  display: flex;
+  justify-content: flex-end;
+  margin: 5px 16px 5px 19px;
+}
+
+
+.copyOperation {
+  color: var(--mauve-light-12, #0066DB);
+  font-family: Inter;
+  font-size: 12px;
+}

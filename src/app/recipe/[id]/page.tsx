@@ -175,6 +175,45 @@ export default function Page({ params }: { params: { id: string } }) {
     (chef: Chef) => chef.name === recipe.chef_name
   ) as Chef;
 
+  const generateStepsText = (data: typeof stepTitlesWithNumbers) => {
+    let text = "作り方\n\n";
+
+    data.forEach(step => {
+      text += `${step.number}.${step.title}\n`;
+    });
+
+    return text;
+  }
+
+  const generateMaterialsText = (data: Recipe) => {
+    let text = `材料（${data.serving_size}人前）\n\n`;
+    const materials = data.materials
+
+    materials.forEach(material => {
+      text += `・${material.name}\n`;
+    });
+
+    return text;
+  }
+
+
+  async function handleStepsCopy(){
+    try {
+      await navigator.clipboard.writeText(generateStepsText(stepTitlesWithNumbers!));
+    } catch (err) {
+      console.error("テキストのコピーに失敗しました", err);
+    }
+  }
+
+  async function handleMaterialsCopy(){
+    try {
+      await navigator.clipboard.writeText(generateMaterialsText(recipe!));
+    } catch (err) {
+      console.error("テキストのコピーに失敗しました", err);
+    }
+  }
+
+
   return (
     <main className={styles.page}>
       <Image
@@ -225,6 +264,11 @@ export default function Page({ params }: { params: { id: string } }) {
               </div>
             </div>
           ))}
+
+          <div className={styles.copyButton} onClick={handleStepsCopy}>
+            <button><Image src="/icon/copy.svg" width={16} height={16} alt="" /></button>
+            <button className={styles.copyOperation} >コピーする</button>
+          </div>
         </>
       )}
 
@@ -245,6 +289,11 @@ export default function Page({ params }: { params: { id: string } }) {
               </div>
             </div>
           ))}
+
+          <div className={styles.copyButton} onClick={handleMaterialsCopy}>
+            <button><Image src="/icon/copy.svg" width={16} height={16} alt="" /></button>
+            <button className={styles.copyOperation} >コピーする</button>
+          </div>
         </>
       )}
     </main>
