@@ -107,13 +107,13 @@ export default function Page({ params }: { params: { target: string } }) {
         <div className={styles["result-title"]}>{searchTitle}</div>
         <div className={styles["result-list"]}>
           {searchRecipeResults.map((result) => (
-            <div key={result.id}>
+            <Link href={`/recipe/${result.id}`} key={result.id}>
               <RecipeCard
                 favCountNumber={result.favorite_count}
-                description={result.description}
                 name={result.name}
+                description={result.description}
               />
-            </div>
+            </Link>
           ))}
         </div>
         <div className={styles["chef-list"]}>
