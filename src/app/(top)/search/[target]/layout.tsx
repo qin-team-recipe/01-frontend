@@ -14,11 +14,11 @@ export default function SearchLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main>
+    <>
       <div className={styles["search-section"]}>
         <SearchInput />
       </div>
       <div>{children}</div>
-    </main>
+    </>
   );
 }

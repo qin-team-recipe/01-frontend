@@ -1,11 +1,12 @@
 @import "@/styles/mixin";
 
-$side-width: 222px;
-$page-width: 480px;
-$layout-gap: 20px;
+$side-width: 222px; // PCサイドバーの幅
+$page-width: 480px; // PCメインページの幅
+$layout-gap: 20px; // PCサイドバーとメインページの間の余白
 
 .layout {
   font-size: 14px;
+
   @include pc {
     position: relative;
     display: flex;
@@ -26,72 +27,29 @@ $layout-gap: 20px;
   }
 }
 
-.layout-page {
-  padding-bottom: 100px;
+.side {
+  display: none;
 
   @include pc {
-    position: relative;
-    width: $page-width;
-    padding-bottom: 0;
-    border-right: 1px solid #e4e2e4;
-    border-left: 1px solid #e4e2e4;
-  }
-}
-
-.layout-side {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  width: 100%;
-  background-color: #fff;
-  filter: drop-shadow(0px -2px 4px rgba(0, 0, 0, 0.12));
-
-  @include pc {
+    position: fixed;
     top: 0;
-    bottom: auto;
     left: 50%;
     z-index: 0;
-    display: flex;
-    column-gap: 20px;
-    align-items: flex-start;
-    width: auto;
+    display: block;
     width: $page-width + $layout-gap + $side-width;
-    background-color: transparent;
-    filter: none;
     transform: translateX(-50%);
   }
 }
 
-.layout-side-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  @include pc {
-    row-gap: 40px;
-    width: $side-width;
-    padding: 20px;
-  }
+.side-inner {
+  width: $side-width;
 }
 
-.layout-side-title {
-  display: none;
-
+.page {
   @include pc {
-    display: block;
-  }
-}
-
-.layout-side-title-link {
-  display: flex;
-  column-gap: 10px;
-  align-items: center;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 29px;
-
-  @include hover-active {
-    opacity: 0.7;
+    position: relative;
+    width: $page-width;
+    border-right: 1px solid #e4e2e4;
+    border-left: 1px solid #e4e2e4;
   }
 }

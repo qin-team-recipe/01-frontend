@@ -1,9 +1,6 @@
 import React from "react";
 
-import { Header } from "@/components/Header";
 import { ShoppingList } from "@/components/ShoppingList";
-
-import styles from "./list.module.scss";
 
 export type CartsType = {
   user_id: number;
@@ -83,10 +80,5 @@ export const metadata = {
 };
 
 export default function Home() {
-  return (
-    <main className={styles.page}>
-      <Header h1>買い物リスト</Header>
-      <ShoppingList data={dummyData} />
-    </main>
-  );
+  return <ShoppingList data={dummyData} />;
 }
