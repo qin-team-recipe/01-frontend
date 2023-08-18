@@ -39,7 +39,7 @@ export const SearchInput: React.FC = () => {
         }
       } else {
         if (isSearchPage) {
-          router.replace(`/search/${target}`);
+          router.push(`/search/${target}`);
         }
         setSearchWord("");
       }
@@ -57,7 +57,7 @@ export const SearchInput: React.FC = () => {
 
   const handleClose = () => {
     inputRef.current?.focus();
-    router.replace(`/search/${target}`);
+    router.push(`/search/${target}`);
     setSearchWord("");
   };
 
