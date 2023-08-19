@@ -100,11 +100,13 @@ export default function Page({ params }: { params: { target: string } }) {
     }
   };
 
+  // インフィニットローディング用
   const observerRef = useRef<IntersectionObserver | null>(null);
   const targetRef = useRef<HTMLDivElement | null>(null);
   const [isObserver, setIsObserver] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
 
+  // 監視対象の制御
   useEffect(() => {
     if (queryWord) {
       setIsObserver(false);
@@ -113,6 +115,7 @@ export default function Page({ params }: { params: { target: string } }) {
     }
   }, [queryWord]);
 
+  // インフィニットローディング用のデータ取得
   const getMoreRecipeData = useCallback(async () => {
     const response = await fetch(`/api/recipes?page=${pageNumber}`);
     const addRecipes = await response.json();
@@ -130,6 +133,7 @@ export default function Page({ params }: { params: { target: string } }) {
     setPageNumber((prev) => prev + 1);
   }, [pageNumber]);
 
+  // インフィニットローディング用のtargetRefを監視
   useEffect(() => {
     observerRef.current = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
@@ -147,7 +151,7 @@ export default function Page({ params }: { params: { target: string } }) {
         observerRef.current.unobserve(currentTargetRef);
       }
     };
-  }, [getMoreRecipeData]);
+  }, [getMoreRecipeData, isObserver]);
 
   return (
     <div>
