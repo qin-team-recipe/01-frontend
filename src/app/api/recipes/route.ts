@@ -48,16 +48,20 @@ export const GET = async (request: Request) => {
   const { searchParams } = new URL(request.url);
   const count = searchParams.get("count");
   const page = searchParams.get("page");
-  console.log("page:", page);
-
   const query = count ? `?count=${count}` : page ? `?page=${page}` : "";
-  // const response = await fetch(
-  //   `${process.env.API_BACK_URL}/api/v1/recipes${query}`
-  // );
 
-  // const data = await response.json();
+  const response = await fetch(
+    `${process.env.API_BACK_URL}/api/v1/recipes${query}`
+  ).catch(() => {
+    // return NextResponse.json([]);
+    // TODO: dummy data
+    return NextResponse.json(dummyData);
+  });
 
-  // TODO: dummy data
-  const data = dummyData;
+  if (!response.ok) {
+    return NextResponse.json([]);
+  }
+  const data = await response.json();
+
   return NextResponse.json(data);
 };

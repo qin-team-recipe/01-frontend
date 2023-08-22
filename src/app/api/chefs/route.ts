@@ -49,9 +49,18 @@ const dummyData = [
 
 // /recipes or /recipes?count=10
 export const GET = async () => {
-  // const response = await fetch(`${process.env.API_BACK_URL}/api/v1/recipes`);
-  // const data = await response.json();
-  // TODO: dummy data
-  const data = dummyData;
+  const response = await fetch(
+    `${process.env.API_BACK_URL}/api/v1/recipes`
+  ).catch(() => {
+    // return NextResponse.json([]);
+    // TODO: dummy data
+    return NextResponse.json(dummyData);
+  });
+
+  if (!response.ok) {
+    return NextResponse.json([]);
+  }
+  const data = await response.json();
+
   return NextResponse.json(data);
 };

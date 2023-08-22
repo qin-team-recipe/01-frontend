@@ -33,10 +33,18 @@ const dummyData = [
 
 // /trending_chefs
 export const GET = async () => {
-  // const response = await fetch(`${process.env.API_BACK_URL}/api/v1/trending_chefs`);
-  // const data: { chefs: TrendingChefs[] } = await response.json();
-  // const chefs = data.chefs;
-  // return NextResponse.json(chefs);
-  // TODO: dummy data
-  return NextResponse.json(dummyData);
+  const response = await fetch(
+    `${process.env.API_BACK_URL}/api/v1/trending_chefs`
+  ).catch(() => {
+    // return NextResponse.json([]);
+    // TODO: dummy data
+    return NextResponse.json(dummyData);
+  });
+
+  if (!response.ok) {
+    return NextResponse.json([]);
+  }
+  const data = await response.json();
+
+  return NextResponse.json(data);
 };

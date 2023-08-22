@@ -43,7 +43,6 @@ export default function Page({ params }: { params: { target: string } }) {
 
       if (!response.ok) {
         setSearchRecipeResults([]);
-        throw new Error("Failed to fetch data");
       }
 
       const recipes: Recipe[] = await response.json();
