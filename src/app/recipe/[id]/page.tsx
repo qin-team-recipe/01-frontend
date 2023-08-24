@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from 'react';
+import { useState } from "react";
 
 import { FollowButton } from "@/components/FollowButton";
 import { IconAddCart } from "@/components/Icon";
@@ -11,10 +11,12 @@ import { TabBar } from "@/components/TabBar";
 import styles from "../recipe.module.scss";
 
 interface Step {
-  title: string;
+  position: number;
+  description: string;
 }
 
 interface Material {
+  position: number;
   name: string;
 }
 
@@ -26,11 +28,12 @@ interface ExternalLink {
 }
 
 interface Recipe {
-  id: string;
+  id: number;
   name: string;
   description: string;
   favorite_count: number;
   thumbnail: string;
+  chef_id: number;
   chef_name: string;
   serving_size: number;
   steps: Step[];
@@ -52,62 +55,78 @@ interface Chef {
   external_links: ExternalLink[];
 }
 
-const recipeData = {
-  id: "3",
+const recipe = {
+  id: 3,
   name: "グラタン",
   description:
     "はじめてでも失敗なく作れるような、鶏肉や玉ねぎを具とした基本的なマカロニグラタンのレシピです。\nソースと具材炒めを別器具で行うレシピも多いですが、グラタンの具を炒めたフライパンの中で、そのままホワイトソースを仕上げる手軽な作り方にしています。ぜひお試しください。",
   favorite_count: 12,
   thumbnail: "/images/recipe-dummy.png",
+  chef_id: 3,
   chef_name: "アンミカ",
   serving_size: 2,
   steps: [
     {
-      title:
+      position: 1,
+      description:
         "野菜を切るあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
     },
     {
-      title: "鍋に材料を入れる",
+      position: 2,
+      description: "鍋に材料を入れる",
     },
     {
-      title: "盛り付ける",
+      position: 3,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 4,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 5,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 6,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 7,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 8,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 9,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 10,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 11,
+      description: "盛り付ける",
     },
     {
-      title: "盛り付ける",
+      position: 12,
+      description: "盛り付ける",
     },
   ],
   materials: [
     {
+      position: 1,
       name: "りんご",
     },
     {
+      position: 2,
       name: "豚肉",
     },
     {
+      position: 3,
       name: "玉ねぎ",
     },
   ],
@@ -122,7 +141,7 @@ const recipeData = {
   updated_at: "2023-6-20 15:45",
 };
 
-const chefData = {
+const chef = {
   id: 3,
   name: "アンミカ",
   description: "白が200色わかる方",
@@ -142,19 +161,7 @@ const chefData = {
   ],
 };
 
-const recipeArray: Recipe[] = [recipeData];
-
-const chefArray: Chef[] = [chefData];
-
 export default function Page({ params }: { params: { id: string } }) {
-  const recipe = recipeArray.find((recipe) => recipe.id === params.id);
-
-  if (!recipe) {
-    return {
-      notFound: true,
-    };
-  }
-
   const [activeTabId, setActiveTabId] = useState(1);
 
   const handleTab = (tabId: number) => {
@@ -169,50 +176,43 @@ export default function Page({ params }: { params: { id: string } }) {
     activeTabId: activeTabId,
   };
 
-  const stepTitlesWithNumbers = recipe.steps.map((step, index) => ({ number: index + 1, title: step.title }))
-
-  const chef = chefArray.find(
-    (chef: Chef) => chef.name === recipe.chef_name
-  ) as Chef;
-
-  const generateStepsText = (data: typeof stepTitlesWithNumbers) => {
+  const generateStepsText = (data: Recipe) => {
     let text = "作り方\n\n";
+    const steps = data.steps;
 
-    data.forEach(step => {
-      text += `${step.number}.${step.title}\n`;
+    steps.forEach((step) => {
+      text += `${step.position}.${step.description}\n`;
     });
 
     return text;
-  }
+  };
 
   const generateMaterialsText = (data: Recipe) => {
     let text = `材料（${data.serving_size}人前）\n\n`;
-    const materials = data.materials
+    const materials = data.materials;
 
-    materials.forEach(material => {
+    materials.forEach((material) => {
       text += `・${material.name}\n`;
     });
 
     return text;
-  }
+  };
 
-
-  async function handleStepsCopy(){
+  async function handleStepsCopy() {
     try {
-      await navigator.clipboard.writeText(generateStepsText(stepTitlesWithNumbers!));
+      await navigator.clipboard.writeText(generateStepsText(recipe!));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
   }
 
-  async function handleMaterialsCopy(){
+  async function handleMaterialsCopy() {
     try {
       await navigator.clipboard.writeText(generateMaterialsText(recipe!));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
   }
-
 
   return (
     <main className={styles.page}>
@@ -250,29 +250,29 @@ export default function Page({ params }: { params: { id: string } }) {
 
       <TabBar data={tabData} onDataSend={handleTab} />
 
-      {activeTabId ===  1 && (
+      {activeTabId === 1 && (
         <>
-          {stepTitlesWithNumbers.map(step => (
-            <div key={step.number} className={styles.separator}>
+          {recipe.steps.map((step) => (
+            <div key={step.position} className={styles.separator}>
               <div className={styles.stepContainer}>
-                <div className={styles.stepNumber} >
-                  <div className={styles.stepCircle} >{step.number}</div>
+                <div className={styles.stepNumber}>
+                  <div className={styles.stepCircle}>{step.position}</div>
                 </div>
-                <div className={styles.stepTitle} >
-                  {step.title}
-                </div>
+                <div className={styles.stepTitle}>{step.description}</div>
               </div>
             </div>
           ))}
 
           <div className={styles.copyButton} onClick={handleStepsCopy}>
-            <button><Image src="/icon/copy.svg" width={16} height={16} alt="" /></button>
-            <button className={styles.copyOperation} >コピーする</button>
+            <button>
+              <Image src="/icon/copy.svg" width={16} height={16} alt="" />
+            </button>
+            <button className={styles.copyOperation}>コピーする</button>
           </div>
         </>
       )}
 
-      {activeTabId ===  2 && (
+      {activeTabId === 2 && (
         <>
           <div className={`${styles.separator} ${styles.materialHeader}`}>
             <h1 className={styles.servingSize}>{recipe.serving_size}人前</h1>
@@ -285,14 +285,18 @@ export default function Page({ params }: { params: { id: string } }) {
             <div key={material.name} className={styles.separator}>
               <div className={styles.materialContainer}>
                 <div className={styles.materialName}>{material.name}</div>
-                <button><IconAddCart color="#6F6E77" /></button>
+                <button>
+                  <IconAddCart color="#6F6E77" />
+                </button>
               </div>
             </div>
           ))}
 
           <div className={styles.copyButton} onClick={handleMaterialsCopy}>
-            <button><Image src="/icon/copy.svg" width={16} height={16} alt="" /></button>
-            <button className={styles.copyOperation} >コピーする</button>
+            <button>
+              <Image src="/icon/copy.svg" width={16} height={16} alt="" />
+            </button>
+            <button className={styles.copyOperation}>コピーする</button>
           </div>
         </>
       )}
