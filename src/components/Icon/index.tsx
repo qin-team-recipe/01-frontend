@@ -5,6 +5,7 @@ export { IconCart } from "@/components/Icon/IconCart";
 export { IconCheck } from "@/components/Icon/IconCheck";
 export { IconClose } from "@/components/Icon/IconClose";
 export { IconCook } from "@/components/Icon/IconCook";
+export { IconCopy } from "@/components/Icon/IconCopy";
 export { IconDelete } from "@/components/Icon/IconDelete";
 export { IconDots } from "@/components/Icon/IconDots";
 export { IconHeart } from "@/components/Icon/IconHeart";

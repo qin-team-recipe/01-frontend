@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { FollowButton } from "@/components/FollowButton";
-import { IconAddCart } from "@/components/Icon";
+import { IconAddCart, IconCopy } from "@/components/Icon";
 import { TabBar } from "@/components/TabBar";
 
 import styles from "../recipe.module.scss";
@@ -265,7 +265,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
           <div className={styles.copyButton} onClick={handleStepsCopy}>
             <button>
-              <Image src="/icon/copy.svg" width={16} height={16} alt="" />
+              <IconCopy color="#006ADC" />
             </button>
             <button className={styles.copyOperation}>コピーする</button>
           </div>
@@ -294,7 +294,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
           <div className={styles.copyButton} onClick={handleMaterialsCopy}>
             <button>
-              <Image src="/icon/copy.svg" width={16} height={16} alt="" />
+              <IconCopy color="#006ADC" />
             </button>
             <button className={styles.copyOperation}>コピーする</button>
           </div>
