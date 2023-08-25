@@ -200,7 +200,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const handleStepsCopy = async () => {
     try {
-      await navigator.clipboard.writeText(generateStepsText(recipe!));
+      await navigator.clipboard.writeText(generateStepsText(recipe));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
@@ -208,7 +208,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const handleMaterialsCopy = async () => {
     try {
-      await navigator.clipboard.writeText(generateMaterialsText(recipe!));
+      await navigator.clipboard.writeText(generateMaterialsText(recipe));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
