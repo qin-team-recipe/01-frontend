@@ -198,21 +198,21 @@ export default function Page({ params }: { params: { id: string } }) {
     return text;
   };
 
-  async function handleStepsCopy() {
+  const handleStepsCopy = async () => {
     try {
       await navigator.clipboard.writeText(generateStepsText(recipe!));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
-  }
+  };
 
-  async function handleMaterialsCopy() {
+  const handleMaterialsCopy = async () => {
     try {
       await navigator.clipboard.writeText(generateMaterialsText(recipe!));
     } catch (err) {
       console.error("テキストのコピーに失敗しました", err);
     }
-  }
+  };
 
   return (
     <main className={styles.page}>
