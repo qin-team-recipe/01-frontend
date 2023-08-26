@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { Recipe } from "../../types";
+
 const dummyData = [
   {
     id: 3,
@@ -59,7 +61,7 @@ export const GET = async (request: Request) => {
   if (!response.ok) {
     throw new Error("Failed to fetch data");
   }
-  const data = await response.json();
+  const data: Recipe[] = await response.json();
 
   return NextResponse.json(data);
 };
