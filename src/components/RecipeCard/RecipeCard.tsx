@@ -3,31 +3,39 @@ import Image from "next/image";
 import { IconHeart } from "../Icon";
 import styles from "./RecipeCard.module.scss";
 
-export interface RecipeCardProps {
-  favCountNumber: number;
+export type RecipeCardProps = {
   name: string;
   description: string;
+  favoriteCount: number;
+  isPublic?: boolean;
   isTop?: boolean;
-}
+};
 
 export const RecipeCard: React.FC<RecipeCardProps> = ({
-  favCountNumber,
+  favoriteCount,
   name,
   description,
+  isPublic = true,
   isTop = false,
 }) => {
   return (
     <div>
       <div className={isTop ? styles.imgWrapperTop : styles.imgWrapper}>
-        {favCountNumber > 0 && (
-          <div className={styles.favCount}>
-            <span className={styles["icon-heart"]}>
-              <IconHeart color="#FFFFFF" />
-            </span>
-            <span className={styles.favNumber}>
-              {favCountNumber.toLocaleString()}
-            </span>
-          </div>
+        {isPublic ? (
+          favoriteCount > 0 && (
+            <div className={styles.favCount}>
+              <span className={styles["icon-heart"]}>
+                <IconHeart color="#FFFFFF" />
+              </span>
+              <span className={styles.favNumber}>
+                {favoriteCount.toLocaleString()}
+              </span>
+            </div>
+          )
+        ) : (
+          <span className={`${styles.favCount} ${styles["not-public"]}`}>
+            非公開
+          </span>
         )}
 
         <Image
