@@ -5,9 +5,7 @@ import { ChefCard } from "@/components/ChefCard";
 import { RecipeCard } from "@/components/RecipeCard";
 import { SearchInput } from "@/components/SearchInput";
 
-import { Chef } from "../api/chefs/types";
-import { Recipe } from "../api/recipes/types";
-import { TrendingChefs } from "../api/trending_chefs/types";
+import { Chef, Recipe, TrendingChef } from "../api/types";
 import styles from "./top.module.scss";
 
 export const metadata = {
@@ -19,7 +17,7 @@ const getTrendingChefs = async () => {
   const response = await fetch(
     `${process.env.API_FRONT_URL}/api/trending_chefs`
   );
-  const trendingChefs: TrendingChefs[] = await response.json();
+  const trendingChefs: TrendingChef[] = await response.json();
   return trendingChefs;
 };
 

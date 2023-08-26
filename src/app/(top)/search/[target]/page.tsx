@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Chef } from "@/app/api/chefs/types";
-import { Recipe } from "@/app/api/recipes/types";
+import { Chef, Recipe } from "@/app/api/types";
 import { ChefCard } from "@/components/ChefCard";
 import { IconLoading } from "@/components/Icon";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -35,16 +34,12 @@ export default function Page({ params }: { params: { target: string } }) {
   }
 
   const searchRecipe = useCallback(async () => {
-    let response;
     setSearchRecipeResults([]);
     if (queryWord) {
       const decodeQueryWord = decodeURIComponent(queryWord);
-      response = await fetch(`/api/recipes/search?keyword=${decodeQueryWord}`);
-
-      if (!response.ok) {
-        setSearchRecipeResults([]);
-      }
-
+      const response = await fetch(
+        `/api/recipes/search?keyword=${decodeQueryWord}`
+      );
       const recipes: Recipe[] = await response.json();
       setSearchRecipeResults(recipes);
     }
@@ -57,11 +52,6 @@ export default function Page({ params }: { params: { target: string } }) {
       response = await fetch(`/api/chefs/search?keyword=${decodeQueryWord}`);
     } else {
       response = await fetch(`/api/chefs`);
-    }
-
-    if (!response.ok) {
-      setSearchChefResults([]);
-      throw new Error("Failed to fetch data");
     }
 
     const chefs: Chef[] = await response.json();
