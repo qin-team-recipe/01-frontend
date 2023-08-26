@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { Chef } from "../../types";
+
 const dummyData = [
   {
     id: 3,
@@ -55,15 +57,15 @@ export const GET = async (request: Request) => {
   const response = await fetch(
     `${process.env.API_BACK_URL}/api/v1/chefs/search?keyword=${keyword}`
   ).catch(() => {
-    // return NextResponse.json([]);
+    // throw new Error("Failed to fetch data");
     // TODO: dummy data
     return NextResponse.json(dummyData);
   });
 
   if (!response.ok) {
-    return NextResponse.json([]);
+    throw new Error("Failed to fetch data");
   }
-  const data = await response.json();
+  const data: Chef[] = await response.json();
 
   return NextResponse.json(data);
 };
