@@ -7,6 +7,7 @@ export type RecipeCardProps = {
   name: string;
   description: string;
   favoriteCount: number;
+  thumbnail: string;
   isPublic?: boolean;
   isTop?: boolean;
 };
@@ -15,6 +16,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
   favoriteCount,
   name,
   description,
+  thumbnail,
   isPublic = true,
   isTop = false,
 }) => {
@@ -38,12 +40,7 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
           </span>
         )}
 
-        <Image
-          src="/images/recipe-dummy.png"
-          alt=""
-          className={styles.img}
-          fill
-        />
+        <Image src={thumbnail} alt="" className={styles.img} fill />
       </div>
 
       <h1 className={styles["recipe-name"]}>{name}</h1>
