@@ -52,13 +52,13 @@ export const GET = async () => {
   const response = await fetch(
     `${process.env.API_BACK_URL}/api/v1/recipes`
   ).catch(() => {
-    // return NextResponse.json([]);
+    // throw new Error("Failed to fetch data");
     // TODO: dummy data
     return NextResponse.json(dummyData);
   });
 
   if (!response.ok) {
-    return NextResponse.json([]);
+    throw new Error("Failed to fetch data");
   }
   const data = await response.json();
 
