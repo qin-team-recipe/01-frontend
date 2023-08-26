@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { IconHeart } from "../Icon";
 import styles from "./RecipeCard.module.scss";
 
 export interface RecipeCardProps {
@@ -20,7 +21,9 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
       <div className={isTop ? styles.imgWrapperTop : styles.imgWrapper}>
         {favCountNumber > 0 && (
           <div className={styles.favCount}>
-            <Image src="/icon/heart.svg" width={10} height={9} alt="" />
+            <span className={styles["icon-heart"]}>
+              <IconHeart color="#FFFFFF" />
+            </span>
             <span className={styles.favNumber}>
               {favCountNumber.toLocaleString()}
             </span>
