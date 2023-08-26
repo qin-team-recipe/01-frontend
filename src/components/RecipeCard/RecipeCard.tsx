@@ -30,9 +30,8 @@ export const RecipeCard: React.FC<RecipeCardProps> = ({
         <Image
           src="/images/recipe-dummy.png"
           alt=""
-          width={isTop ? 160 : 173}
-          height={isTop ? 160 : 173}
           className={styles.img}
+          fill
         />
       </div>
 
