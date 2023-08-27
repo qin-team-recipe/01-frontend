@@ -8,52 +8,8 @@ import { FollowButton } from "@/components/FollowButton";
 import { IconAddCart, IconCopy } from "@/components/Icon";
 import { TabBar } from "@/components/TabBar";
 
+import { Recipe } from "../../api/types";
 import styles from "../recipe.module.scss";
-
-interface Step {
-  position: number;
-  description: string;
-}
-
-interface Material {
-  position: number;
-  name: string;
-}
-
-interface ExternalLink {
-  url: string;
-  type: string;
-  logo: string;
-  follower_count?: number;
-}
-
-interface Recipe {
-  id: number;
-  name: string;
-  description: string;
-  favorite_count: number;
-  thumbnail: string;
-  chef_id: number;
-  chef_name: string;
-  serving_size: number;
-  steps: Step[];
-  materials: Material[];
-  external_links: ExternalLink[];
-  created_at: string;
-  updated_at: string;
-}
-
-interface Chef {
-  id: number;
-  name: string;
-  description: string;
-  follower_count: number;
-  recipe_count: number;
-  thumbnail: string;
-  created_at: string;
-  updated_at: string;
-  external_links: ExternalLink[];
-}
 
 const recipe = {
   id: 3,
