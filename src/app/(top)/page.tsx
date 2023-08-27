@@ -72,9 +72,10 @@ export default async function Page() {
             {recipes.map((recipe) => (
               <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
                 <RecipeCard
-                  favCountNumber={recipe.favorite_count}
+                  favoriteCount={recipe.favorite_count}
                   name={recipe.name}
                   description={recipe.description}
+                  thumbnail={recipe.thumbnail}
                   isTop
                 />
               </Link>

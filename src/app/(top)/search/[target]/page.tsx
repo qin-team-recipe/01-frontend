@@ -153,9 +153,10 @@ export default function Page({ params }: { params: { target: string } }) {
               {searchRecipeResults.map((result, index) => (
                 <Link href={`/recipe/${result.id}`} key={index}>
                   <RecipeCard
-                    favCountNumber={result.favorite_count}
+                    favoriteCount={result.favorite_count}
                     name={result.name}
                     description={result.description}
+                    thumbnail={result.thumbnail}
                   />
                 </Link>
               ))}
