@@ -8,116 +8,27 @@ import { FollowButton } from "@/components/FollowButton";
 import { IconAddCart, IconCopy } from "@/components/Icon";
 import { TabBar } from "@/components/TabBar";
 
-import { Recipe } from "../../api/types";
-import styles from "../recipe.module.scss";
+import { Chef, Recipe } from "../../api/types";
+import styles from "./recipe.module.scss";
 
-const recipe = {
-  id: 3,
-  name: "グラタン",
-  description:
-    "はじめてでも失敗なく作れるような、鶏肉や玉ねぎを具とした基本的なマカロニグラタンのレシピです。\nソースと具材炒めを別器具で行うレシピも多いですが、グラタンの具を炒めたフライパンの中で、そのままホワイトソースを仕上げる手軽な作り方にしています。ぜひお試しください。",
-  favorite_count: 12,
-  thumbnail: "/images/recipe-dummy.png",
-  chef_id: 3,
-  chef_name: "アンミカ",
-  serving_size: 2,
-  steps: [
-    {
-      position: 1,
-      description:
-        "野菜を切るあああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ",
-    },
-    {
-      position: 2,
-      description: "鍋に材料を入れる",
-    },
-    {
-      position: 3,
-      description: "盛り付ける",
-    },
-    {
-      position: 4,
-      description: "盛り付ける",
-    },
-    {
-      position: 5,
-      description: "盛り付ける",
-    },
-    {
-      position: 6,
-      description: "盛り付ける",
-    },
-    {
-      position: 7,
-      description: "盛り付ける",
-    },
-    {
-      position: 8,
-      description: "盛り付ける",
-    },
-    {
-      position: 9,
-      description: "盛り付ける",
-    },
-    {
-      position: 10,
-      description: "盛り付ける",
-    },
-    {
-      position: 11,
-      description: "盛り付ける",
-    },
-    {
-      position: 12,
-      description: "盛り付ける",
-    },
-  ],
-  materials: [
-    {
-      position: 1,
-      name: "りんご",
-    },
-    {
-      position: 2,
-      name: "豚肉",
-    },
-    {
-      position: 3,
-      name: "玉ねぎ",
-    },
-  ],
-  external_links: [
-    {
-      url: "https://example.com",
-      type: "Twitter",
-      logo: "https://twitter.logo.com",
-    },
-  ],
-  created_at: "2023-6-16 10:45",
-  updated_at: "2023-6-20 15:45",
+// レシピ
+const getRecipe = async (id: string) => {
+  const response = await fetch(`/api/recipes/${id}`);
+  const recipe: Recipe = await response.json();
+  return recipe;
 };
 
-const chef = {
-  id: 3,
-  name: "アンミカ",
-  description: "白が200色わかる方",
-  follower_count: 12,
-  recipe_count: 34,
-  thumbnail: "/images/featured-chef1.png",
-  created_at: "2023-6-16 10:45",
-  updated_at: "2023-6-20 15:45",
-  external_links: [
-    {
-      title: "こんにちはサイト",
-      url: "https://example.com",
-      type: "Twitter",
-      logo: "https://twitter.logo.com",
-      follower_count: 1222,
-    },
-  ],
+// シェフ
+const getChef = async (id: string | number) => {
+  const response = await fetch(`/api/chefs/${id}`);
+  const chef: Chef = await response.json();
+  return chef;
 };
 
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+  const recipe = await getRecipe(params.id);
+  const chef = await getChef(3);
+
   const [activeTabId, setActiveTabId] = useState(1);
 
   const handleTab = (tabId: number) => {
