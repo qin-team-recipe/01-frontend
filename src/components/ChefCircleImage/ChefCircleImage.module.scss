@@ -1,0 +1,25 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 68px;
+  height: 87px;
+}
+
+.chef-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.chef-name {
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: 400;
+  padding-top: 1px;
+  width: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
