@@ -13,9 +13,9 @@ export const IconTablerMenu = ({ color }: { color: string }) => (
     <path
       d="M4 8H20M4 16H20"
       stroke="#1A1523"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
