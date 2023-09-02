@@ -30,3 +30,12 @@ export type TrendingChef = {
   created_at: string;
   updated_at: string;
 };
+
+// お気に入りシェフ参照 /users/:user_id/favorite_chefs
+export type FavoriteChef = {
+  chef_id: number;
+  name: string;
+  thumbnail: string;
+  created_at: string;
+  updated_at: string;
+};

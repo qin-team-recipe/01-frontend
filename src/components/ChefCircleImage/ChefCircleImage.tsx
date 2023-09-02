@@ -5,7 +5,7 @@ import React from "react";
 import styles from "./ChefCircleImage.module.scss";
 
 export type ChefCircleImageProps = {
-  id: string;
+  id: number;
   thumbnail: string;
   name?: string;
 };
