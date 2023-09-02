@@ -1,4 +1,5 @@
 // シェフ検索 /chefs/search?keyword=:keyword
+// シェフ詳細 /chefs/id
 export type Chef = {
   id: number;
   name: string;
@@ -12,6 +13,7 @@ export type Chef = {
 };
 
 // レシピ検索 /recipes/search?keyword=:keyword
+// レシピ詳細 /recipes/id
 export type Recipe = {
   id: number;
   name: string;
