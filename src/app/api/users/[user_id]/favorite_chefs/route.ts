@@ -61,14 +61,14 @@ const dummyData = [
   },
 ];
 
-// /users/[id]/favorite_chefs
+// /users/:user_id/favorite_chefs
 export const GET = async (
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: { user_id: string } }
 ) => {
-  const id = params.id;
+  const userId = params.user_id;
   const response = await fetch(
-    `${process.env.API_BACK_URL}/api/v1/users/${id}/favorite_chefs`
+    `${process.env.API_BACK_URL}/api/v1/users/${userId}/favorite_chefs`
   ).catch(() => {
     // throw new Error("Failed to fetch data");
     // TODO: dummy data

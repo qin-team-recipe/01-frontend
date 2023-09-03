@@ -39,3 +39,15 @@ export type FavoriteChef = {
   created_at: string;
   updated_at: string;
 };
+
+// 新着レシピ（お気に入りページのお気に入りシェフの新着レシピ） /users/:user_id/favorite_new_recipes
+export type FavoriteNewRecipe = {
+  id: number;
+  name: string;
+  description: string;
+  favorite_count: number;
+  thumbnail: string;
+  chef_name: string;
+  created_at: string;
+  updated_at: string;
+};
