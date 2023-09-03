@@ -51,3 +51,16 @@ export type FavoriteNewRecipe = {
   created_at: string;
   updated_at: string;
 };
+
+// お気に入りレシピ参照 /users/:user_id/favorite_recipes
+export type FavoriteRecipe = {
+  recipe_id: number;
+  name: string;
+  description: string;
+  favorite_count: number;
+  thumbnail: string;
+  chef_name: string;
+  is_public: boolean;
+  created_at: string;
+  updated_at: string;
+};

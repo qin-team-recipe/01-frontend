@@ -5,10 +5,10 @@ import { IconTablerMenu } from "@/components/Icon";
 import { IconAvatar } from "@/components/Icon/IconAvatar";
 import { RecipeCard } from "@/components/RecipeCard";
 
-import { FavoriteChef, FavoriteNewRecipe } from "../api/types";
+import { FavoriteChef, FavoriteNewRecipe, FavoriteRecipe } from "../api/types";
 import styles from "./favorites.module.scss";
 
-// シェフ一覧
+// お気に入りシェフ参照
 const getFavoriteChefs = async (userId: number) => {
   const response = await fetch(
     `${process.env.API_FRONT_URL}/api/users/${userId}/favorite_chefs`
@@ -26,11 +26,21 @@ const getFavoriteNewRecipes = async (userId: number) => {
   return favoriteChefs;
 };
 
+// お気に入りレシピ参照
+const getFavoriteRecipes = async (userId: number) => {
+  const response = await fetch(
+    `${process.env.API_FRONT_URL}/api/users/${userId}/favorite_recipes`
+  );
+  const favoriteRecipes: FavoriteRecipe[] = await response.json();
+  return favoriteRecipes;
+};
+
 export default async function Page() {
   // TODO: dummy data
   const dummyUserId = 10;
   const favoriteChefs = await getFavoriteChefs(dummyUserId);
   const favoriteNewRecipes = await getFavoriteNewRecipes(dummyUserId);
+  const favoriteRecipes = await getFavoriteRecipes(dummyUserId);
 
   return (
     <main>
@@ -48,7 +58,7 @@ export default async function Page() {
       <div className={styles.contents}>
         <div>
           <div className={styles["sub-title"]}>シェフ</div>
-          <div className={styles["favorite-chefs"]}>
+          <div className={styles["favorite-chef"]}>
             {favoriteChefs.map((chef) => (
               <div key={chef.chef_id}>
                 <ChefCircleImage
@@ -83,7 +93,22 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div>Favorites</div>
+        <div>
+          <div className={styles["sub-title"]}>お気に入りレシピ</div>
+          <div className={styles["favorite-recipe"]}>
+            {favoriteRecipes.map((recipe) => (
+              <Link href={`/recipe/${recipe.recipe_id}`} key={recipe.recipe_id}>
+                <RecipeCard
+                  favoriteCount={recipe.favorite_count}
+                  name={recipe.name}
+                  description={recipe.description}
+                  thumbnail={recipe.thumbnail}
+                  isPublic={recipe.is_public}
+                />
+              </Link>
+            ))}
+          </div>{" "}
+        </div>
       </div>
     </main>
   );
