@@ -13,7 +13,7 @@ export type CartsListType = {
   name: string;
   own_notes: boolean;
   position: number;
-  materials: {
+  items: {
     name: string;
     position: number;
     is_checked: boolean;
@@ -32,7 +32,7 @@ const dummyData: CartsType = {
       name: "じぶんメモ",
       own_notes: true,
       position: 1,
-      materials: [
+      items: [
         {
           name: "ブロッコリー",
           is_checked: true,
@@ -55,7 +55,7 @@ const dummyData: CartsType = {
       name: "カレー",
       own_notes: false,
       position: 2,
-      materials: [
+      items: [
         {
           name: "じゃがいも",
           is_checked: false,
