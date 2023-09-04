@@ -30,3 +30,37 @@ export type TrendingChef = {
   created_at: string;
   updated_at: string;
 };
+
+// お気に入りシェフ参照 /users/:user_id/favorite_chefs
+export type FavoriteChef = {
+  chef_id: number;
+  name: string;
+  thumbnail: string;
+  created_at: string;
+  updated_at: string;
+};
+
+// 新着レシピ（お気に入りページのお気に入りシェフの新着レシピ） /users/:user_id/favorite_new_recipes
+export type FavoriteNewRecipe = {
+  id: number;
+  name: string;
+  description: string;
+  favorite_count: number;
+  thumbnail: string;
+  chef_name: string;
+  created_at: string;
+  updated_at: string;
+};
+
+// お気に入りレシピ参照 /users/:user_id/favorite_recipes
+export type FavoriteRecipe = {
+  recipe_id: number;
+  name: string;
+  description: string;
+  favorite_count: number;
+  thumbnail: string;
+  chef_name: string;
+  is_public: boolean;
+  created_at: string;
+  updated_at: string;
+};

@@ -15,3 +15,4 @@ export { IconOthers } from "@/components/Icon/IconOthers";
 export { IconPlus } from "@/components/Icon/IconPlus";
 export { IconPlusBox } from "@/components/Icon/IconPlusBox";
 export { IconSearch } from "@/components/Icon/IconSearch";
+export { IconTablerMenu } from "@/components/Icon/IconTablerMenu";
