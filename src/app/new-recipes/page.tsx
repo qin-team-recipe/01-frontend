@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Header } from "@/components/Header";
-import { IconLoading } from "@/components/Icon";
-import { IconArrowBack } from "@/components/Icon/IconArrowBack";
+import { IconArrowBack, IconLoading } from "@/components/Icon";
 import { RecipeCard } from "@/components/RecipeCard";
 
 import { Recipe } from "../api/types";
