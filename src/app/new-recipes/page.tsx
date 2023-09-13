@@ -6,16 +6,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Header } from "@/components/Header";
 import { IconArrowBack, IconLoading } from "@/components/Icon";
 import { RecipeCard } from "@/components/RecipeCard";
+import { useUser } from "@/hooks/useUser";
 
 import { Recipe } from "../api/types";
 import styles from "./new-recipes.module.scss";
 
 export default function Page() {
-  const getUserId = useCallback(async () => {
-    const response = await fetch(`/api/current_user`);
-    return await response.json();
-  }, []);
-
   const icon = <IconArrowBack color="#1A1523" />;
   const [newRecipes, setNewRecipes] = useState<Recipe[]>([]);
 
@@ -24,9 +20,9 @@ export default function Page() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const [isObserver, setIsObserver] = useState(true);
   const [pageNumber, setPageNumber] = useState(1);
-  const userId = getUserId();
 
   // インフィニットローディング用のデータ取得
+  const { userId } = useUser();
   const getMoreRecipeData = useCallback(async () => {
     const response = await fetch(
       `/api/users/${userId}/favorite_new_recipes?page=${pageNumber}`

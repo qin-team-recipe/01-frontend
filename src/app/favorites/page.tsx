@@ -5,6 +5,7 @@ import { IconTablerMenu } from "@/components/Icon";
 import { IconAvatar } from "@/components/Icon/IconAvatar";
 import { RecipeCard } from "@/components/RecipeCard";
 
+// import { useUser } from "@/hooks/useUser";
 import { FavoriteChef, FavoriteNewRecipe, FavoriteRecipe } from "../api/types";
 import styles from "./favorites.module.scss";
 
@@ -20,7 +21,7 @@ const getFavoriteChefs = async (userId: number) => {
 // 新着レシピ（お気に入りページのお気に入りシェフの新着レシピ）
 const getFavoriteNewRecipes = async (userId: number) => {
   const response = await fetch(
-    `${process.env.API_FRONT_URL}/api/users/${userId}/favorite_new_recipes`
+    `${process.env.API_FRONT_URL}/api/users/${userId}/favorite_new_recipes?count=10`
   );
   const favoriteChefs: FavoriteNewRecipe[] = await response.json();
   return favoriteChefs;
@@ -35,12 +36,16 @@ const getFavoriteRecipes = async (userId: number) => {
   return favoriteRecipes;
 };
 
+const getUserId = async (): Promise<number> => {
+  const response = await fetch(`${process.env.API_FRONT_URL}/api/current_user`);
+  return await response.json();
+};
+
 export default async function Page() {
-  // TODO: dummy data
-  const dummyUserId = 10;
-  const favoriteChefs = await getFavoriteChefs(dummyUserId);
-  const favoriteNewRecipes = await getFavoriteNewRecipes(dummyUserId);
-  const favoriteRecipes = await getFavoriteRecipes(dummyUserId);
+  const userId = await getUserId();
+  const favoriteChefs = await getFavoriteChefs(userId);
+  const favoriteNewRecipes = await getFavoriteNewRecipes(userId);
+  const favoriteRecipes = await getFavoriteRecipes(userId);
 
   return (
     <main>
