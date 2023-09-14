@@ -1,0 +1,17 @@
+.page {
+  padding-bottom: 100px;
+}
+
+.recipe-list {
+  margin-top: 8px;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0;
+}
