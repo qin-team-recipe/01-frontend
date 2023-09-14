@@ -31,14 +31,18 @@ export const Footer = () => {
           <Link
             href="/favorites"
             className={
-              pagePath === "/favorites"
+              pagePath === "/favorites" || pagePath === "/settings"
                 ? styles["site-link-active"]
                 : styles["site-link"]
             }
           >
             <span className={styles["site-link-icon"]}>
               <IconHeart
-                color={pagePath === "/favorites" ? "#CA3214" : "#6F6E77"}
+                color={
+                  pagePath === "/favorites" || pagePath === "/settings"
+                    ? "#CA3214"
+                    : "#6F6E77"
+                }
               />
             </span>
             <span className={styles["site-link-text"]}>お気に入り</span>
