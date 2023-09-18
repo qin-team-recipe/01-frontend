@@ -45,21 +45,27 @@
   position: relative;
   img {
     border-radius: 16px;
-    object-fit: contain;
-    position: relative !important;
+    width: 140px;
+    height: 140px;
   }
 }
 
 .chef-name {
-  margin: -34px 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  bottom: 8px;
+  margin: -34px 0 0 10px;
   width: 110px;
-  font-size: 20px;
+  height: 34px;
+  font-size: 16px;
   font-weight: bold;
   color: #fdfcfd;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: Inter;
   position: relative;
+  line-height: 1em;
 }
 
 .topic-recipe {
