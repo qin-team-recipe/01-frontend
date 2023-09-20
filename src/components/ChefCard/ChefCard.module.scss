@@ -3,17 +3,18 @@
 .chef-card {
   display: flex;
   gap: 16px;
-  height: 130px;
+  height: 118px;
 }
 
 .card-left {
   flex-shrink: 0;
   position: relative;
   width: 88px;
+  height: 118px;
   img {
     border-radius: 16px;
-    object-fit: contain;
-    position: relative !important;
+    width: 88px;
+    height: 118px;
   }
 }
 
@@ -34,7 +35,7 @@
 .chef-description {
   font-size: 14px;
   height: 80px;
-  line-height: 20px;
+  line-height: 22px;
   color: #86848d;
   overflow: hidden;
   text-overflow: ellipsis;

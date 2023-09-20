@@ -12,7 +12,7 @@ const dummyData = [
   },
   {
     id: 4,
-    name: "ジュリア",
+    name: "名前が2行のシェフです",
     thumbnail: "/images/featured-chef2.png",
     created_at: "2023-6-16 10:45",
     updated_at: "2023-6-20 15:45",
@@ -44,7 +44,8 @@ export const GET = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch data");
+    return NextResponse.json(dummyData);
+    // throw new Error("Failed to fetch data");
   }
   const data: TrendingChef[] = await response.json();
 
