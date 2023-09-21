@@ -11,7 +11,8 @@ export const GET = async () => {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch data");
+    return NextResponse.json(dummyData);
+    // throw new Error("Failed to fetch data");
   }
   const data: TrendingChef[] = await response.json();
 

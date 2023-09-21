@@ -54,7 +54,7 @@ export default async function Page() {
             {trendingChefs.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <div className={styles["chef-image"]}>
-                  <Image src={chef.thumbnail} fill sizes="100%" alt="" />
+                  <Image src={chef.thumbnail} width={140} height={140} alt="" />
                   <p className={styles["chef-name"]}>{chef.name}</p>
                 </div>
               </Link>
