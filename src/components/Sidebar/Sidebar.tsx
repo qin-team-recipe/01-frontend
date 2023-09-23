@@ -43,7 +43,7 @@ export const Sidebar = () => {
             <Link
               href="/favorites"
               className={
-                pagePath === "/favorites"
+                pagePath === "/favorites" || pagePath === "/new-recipes"
                   ? styles["site-link-active"]
                   : styles["site-link"]
               }
