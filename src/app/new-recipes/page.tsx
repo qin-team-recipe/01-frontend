@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { IconArrowBack, IconLoading } from "@/components/Icon";
 import { RecipeCard } from "@/components/RecipeCard";
@@ -63,31 +64,34 @@ export default function Page() {
   }, [getMoreRecipeData, isObserver]);
 
   return (
-    <main className={styles.page}>
-      <Header h1 position="left" icon={icon} href="/favorites">
-        新着レシピ
-      </Header>
-      <div>
-        <div className={styles["recipe-list"]}>
-          {newRecipes.map((recipe, index) => (
-            <Link href={`/recipe/${recipe.id}`} key={index}>
-              <RecipeCard
-                favoriteCount={recipe.favorite_count}
-                name={recipe.name}
-                description={recipe.description}
-                thumbnail={recipe.thumbnail}
-              />
-            </Link>
-          ))}
-        </div>
+    <>
+      <main className={styles.page}>
+        <Header h1 position="left" icon={icon} href="/favorites">
+          新着レシピ
+        </Header>
         <div>
-          {isObserver ? (
-            <div ref={targetRef} className={styles.loading}>
-              <IconLoading />
-            </div>
-          ) : null}
+          <div className={styles["recipe-list"]}>
+            {newRecipes.map((recipe, index) => (
+              <Link href={`/recipe/${recipe.id}`} key={index}>
+                <RecipeCard
+                  favoriteCount={recipe.favorite_count}
+                  name={recipe.name}
+                  description={recipe.description}
+                  thumbnail={recipe.thumbnail}
+                />
+              </Link>
+            ))}
+          </div>
+          <div>
+            {isObserver ? (
+              <div ref={targetRef} className={styles.loading}>
+                <IconLoading />
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

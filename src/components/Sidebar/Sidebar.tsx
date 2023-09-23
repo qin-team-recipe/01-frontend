@@ -15,8 +15,12 @@ export const Sidebar = () => {
       <div className={styles["sidebar-contents"]}>
         <h1>
           <Link href="/" className={styles["sidebar-title-link"]}>
-            <Image src="/icon/chef.svg" width={32} height={32} alt="" />
-            Top Chefs
+            <Image
+              src="/images/ichiryu-recipe-yoko-1.png"
+              width={200}
+              height={37}
+              alt=""
+            />
           </Link>
         </h1>
         <ul className={styles["site-list"]}>
@@ -32,14 +36,14 @@ export const Sidebar = () => {
               <span className={styles["site-link-icon"]}>
                 <IconSearch color={pagePath === "/" ? "#CA3214" : "#6F6E77"} />
               </span>
-              <span className={styles["site-link-text"]}>話題を検索</span>
+              <span className={styles["site-link-text"]}>一流レシピ</span>
             </Link>
           </li>
           <li>
             <Link
               href="/favorites"
               className={
-                pagePath === "/favorites"
+                pagePath === "/favorites" || pagePath === "/new-recipes"
                   ? styles["site-link-active"]
                   : styles["site-link"]
               }
