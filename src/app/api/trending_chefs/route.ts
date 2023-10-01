@@ -5,7 +5,7 @@ import { TrendingChef } from "../types";
 // /trending_chefs
 export const GET = async () => {
   const response = await fetch(
-    `${process.env.API_BACK_URL}/api/v1/trending_chefs`
+    `${process.env.API_BACK_URL}/api/v1/trending_chefs`, { cache: 'no-store' }
   ).catch(() => {
     throw new Error("System error to fetch data");
   });

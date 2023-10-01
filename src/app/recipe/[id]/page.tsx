@@ -38,7 +38,6 @@ interface Recipe {
   serving_size: number;
   steps: Step[];
   materials: Material[];
-  external_links: ExternalLink[];
   created_at: string;
   updated_at: string;
 }
@@ -52,7 +51,6 @@ interface Chef {
   thumbnail: string;
   created_at: string;
   updated_at: string;
-  external_links: ExternalLink[];
 }
 
 const recipe = {
@@ -130,13 +128,6 @@ const recipe = {
       name: "玉ねぎ",
     },
   ],
-  external_links: [
-    {
-      url: "https://example.com",
-      type: "Twitter",
-      logo: "https://twitter.logo.com",
-    },
-  ],
   created_at: "2023-6-16 10:45",
   updated_at: "2023-6-20 15:45",
 };
@@ -150,15 +141,6 @@ const chef = {
   thumbnail: "/images/featured-chef1.png",
   created_at: "2023-6-16 10:45",
   updated_at: "2023-6-20 15:45",
-  external_links: [
-    {
-      title: "こんにちはサイト",
-      url: "https://example.com",
-      type: "Twitter",
-      logo: "https://twitter.logo.com",
-      follower_count: 1222,
-    },
-  ],
 };
 
 export default function Page({ params }: { params: { id: string } }) {

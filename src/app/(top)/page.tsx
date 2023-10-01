@@ -15,7 +15,7 @@ export const metadata = {
 // 注目のシェフ
 const getTrendingChefs = async () => {
   const response = await fetch(
-    `${process.env.API_FRONT_URL}/api/trending_chefs`
+    `${process.env.API_FRONT_URL}/api/trending_chefs`, { cache: 'no-store' }
   );
   const trendingChefs: TrendingChef[] = await response.json();
   return trendingChefs;
@@ -24,7 +24,7 @@ const getTrendingChefs = async () => {
 // 話題のレシピ一覧
 const getRecipes = async () => {
   const response = await fetch(
-    `${process.env.API_FRONT_URL}/api/recipes?count=10`
+    `${process.env.API_FRONT_URL}/api/recipes?count=10`, { cache: 'no-store' }
   );
   const recipes: Recipe[] = await response.json();
   return recipes;
@@ -32,7 +32,7 @@ const getRecipes = async () => {
 
 // シェフ一覧
 const getChefs = async () => {
-  const response = await fetch(`${process.env.API_FRONT_URL}/api/chefs`);
+  const response = await fetch(`${process.env.API_FRONT_URL}/api/chefs`, { cache: 'no-store' });
   const chefs: Chef[] = await response.json();
   return chefs;
 };
